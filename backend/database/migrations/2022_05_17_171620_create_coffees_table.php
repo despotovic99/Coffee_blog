@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('coffe_sort');
             $table->string('country_origin');
             $table->string('description');
-            $table->string('user_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
