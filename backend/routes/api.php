@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CoffeeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserRoleController;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -43,6 +44,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('category', CategoryController::class)->only(['store', 'destroy']);
 
+    Route::resource('user-role', UserRoleController::class)->only(['index', 'show', 'store', 'destroy']);
 
     Route::post('logout', [AuthController::class, 'logout']);
 
