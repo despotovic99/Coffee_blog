@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CoffeeController;
 use App\Http\Controllers\UserController;
 use App\Models\Category;
 use App\Models\User;
@@ -26,7 +28,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-Route::resource('category', Category::class)->only(['index', 'show']);
+Route::resource('category', CategoryController::class)->only(['index', 'show']);
+Route::resource('coffee', CoffeeController::class)->only(['index', 'show']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
@@ -36,7 +39,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('user', UserController::class)->only(['index', 'show', 'update', 'destroy']);
 
-    Route::resource('category', Category::class)->only(['store', 'update', 'destroy']);
+    Route::resource('coffee', CoffeeController::class)->only(['store', 'update', 'destroy']);
+
+    Route::resource('category', CategoryController::class)->only(['store', 'destroy']);
 
 
     Route::post('logout', [AuthController::class, 'logout']);

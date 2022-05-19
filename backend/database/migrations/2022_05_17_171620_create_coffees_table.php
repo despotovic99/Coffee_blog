@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('coffees', function (Blueprint $table) {
             $table->id();
-            $table->string('coffe_name');
-            $table->string('coffe_sort');
+            $table->string('coffee_name');
+            $table->string('coffee_sort');
             $table->string('country_origin');
             $table->string('description');
             $table->foreignId('user_id');

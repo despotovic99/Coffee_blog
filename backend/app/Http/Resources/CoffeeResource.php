@@ -18,8 +18,8 @@ class CoffeeResource extends JsonResource
     {
         return [
             'id'=>$this->resource->id,
-            'coffe_name'=>$this->resource->coffe_name,
-            'coffe_sort'=>$this->resource->coffe_sort,
+            'coffee_name'=>$this->resource->coffee_name,
+            'coffee_sort'=>$this->resource->coffee_sort,
             'country_origin'=>$this->resource->country_origin,
             'description'=>$this->resource->description,
             'user_id'=>new UserResource(User::find($this->resource->user_id)),
