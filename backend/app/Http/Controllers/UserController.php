@@ -111,8 +111,8 @@ class UserController extends Controller {
      */
     public function destroy(User $user) {
         $user_logged = auth()->user();
-
-        if ($user_logged->role_slug !== 'admin' && $user_logged->id !== $user->id) {
+        $user_role=UserRole::find($user_logged->user_role_id);
+        if ($user_role->role_slug != 'admin' && $user_logged->id != $user->id) {
             return response()->json(['You have not any permissions to do that!']);
         }
         $user->delete();
