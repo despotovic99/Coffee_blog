@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\CoffeeCollection;
 use App\Http\Resources\CoffeeResource;
 use App\Models\Coffee;
+use App\Models\UserRole;
 use App\Rules\UserExsist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -35,9 +36,11 @@ class CoffeeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $user = auth()->user();
 
-        if($user->role_slug!=='admin' && !$user->role_capability) {
+        $user_logged = auth()->user();
+        $user_role=UserRole::find($user_logged->user_role_id);
+
+        if($user_role->role_slug!=='admin' && !$user_role->role_capability) {
             return response()->json(['You have not any permissions to do that!']);
         }
 
@@ -46,7 +49,6 @@ class CoffeeController extends Controller {
                 'coffee_sort' => 'required|string|max:255',
                 'country_origin' => 'required|string|max:255',
                 'description' => 'string|max:255',
-                'user_id' => ['required', 'integer', new UserExsist()],
             ]);
 
             if ($validator->fails()) {
@@ -58,7 +60,7 @@ class CoffeeController extends Controller {
                 'coffee_sort' => $request->coffee_sort,
                 'country_origin' => $request->country_origin,
                 'description' => $request->description,
-                'user_id' => $request->user_id,
+                'user_id' => $user_logged->id
             ]);
 
             return response()->json(['Coffee saved.', new CoffeeResource($coffee)]);
@@ -94,9 +96,10 @@ class CoffeeController extends Controller {
      */
     public function update(Request $request, Coffee $coffee) {
 
-        $user = auth()->user();
+        $user_logged = auth()->user();
+        $user_role=UserRole::find($user_logged->user_role_id);
 
-        if($user->role_slug!=='admin' && !$user->role_capability) {
+        if($user_role->role_slug!=='admin' && !$user_role->role_capability) {
             return response()->json(['You have not any permissions to do that!']);
         }
 
@@ -105,7 +108,6 @@ class CoffeeController extends Controller {
             'coffee_sort' => 'required|string|max:255',
             'country_origin' => 'required|string|max:255',
             'description' => 'string|max:255',
-            'user_id' => ['required', 'integer', new UserExsist()],
         ]);
 
         if ($validator->fails()) {
@@ -116,7 +118,6 @@ class CoffeeController extends Controller {
         $coffee->coffee_sort = $request->coffee_sort;
         $coffee->country_origin = $request->country_origin;
         $coffee->description = $request->description;
-        $coffee->user_id = $request->user_id;
         $coffee->save();
         return response()->json(['Coffee updated.', new CoffeeResource($coffee)]);
     }
@@ -129,9 +130,10 @@ class CoffeeController extends Controller {
      */
     public function destroy(Coffee $coffee) {
 
-        $user = auth()->user();
+        $user_logged = auth()->user();
+        $user_role=UserRole::find($user_logged->user_role_id);
 
-        if($user->role_slug!=='admin' && !$user->role_capability) {
+        if($user_role->role_slug!=='admin' && !$user_role->role_capability) {
             return response()->json(['You have not any permissions to do that!']);
         }
 

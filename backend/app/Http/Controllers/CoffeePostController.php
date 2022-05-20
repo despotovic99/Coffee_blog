@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\CoffeePostCollection;
 use App\Http\Resources\CoffeePostResource;
 use App\Models\CoffeePost;
+use App\Models\UserRole;
 use App\Rules\CategoryExsists;
 use App\Rules\CoffeeExsists;
 use App\Rules\CoffeePostExsists;
@@ -100,8 +101,9 @@ class CoffeePostController extends Controller
     public function update(Request $request, CoffeePost $coffeePost)
     {
         $user = auth()->user();
+        $user_role=UserRole::find($user->user_role_id);
 
-        if($coffeePost->user_id!=$user->id && !$user->role_capability){
+        if($coffeePost->user_id!=$user->id && !$user_role->role_capability && $user_role->role_slug!=='admin'){
             return response()->json(['You have not any permissions to do that!']);
         }
 
@@ -136,8 +138,9 @@ class CoffeePostController extends Controller
     public function destroy(CoffeePost $coffeePost)
     {
         $user = auth()->user();
+        $user_role=UserRole::find($user->user_role_id);
 
-        if($coffeePost->user_id!=$user->id && !$user->role_capability){
+        if($coffeePost->user_id!=$user->id && !$user_role->role_capability && $user_role->role_slug!=='admin'){
             return response()->json(['You have not any permissions to do that!']);
         }
 

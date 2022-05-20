@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CoffeePostCommentCollection;
+use App\Http\Resources\CoffeePostCommentResource;
+use App\Models\CoffeePost;
 use App\Models\CoffeePostComment;
+use App\Models\UserRole;
+use App\Rules\CoffeePostExsists;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CoffeePostCommentController extends Controller
 {
@@ -14,7 +20,7 @@ class CoffeePostCommentController extends Controller
      */
     public function index()
     {
-        //
+        return new CoffeePostCommentCollection(CoffeePostComment::all());
     }
 
     /**
@@ -35,7 +41,26 @@ class CoffeePostCommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id=auth()->user()->id;
+
+        $validator = Validator::make($request->all(), [
+            'comment_content' => 'required|string|max:255',
+            'post_id'=>['required','integer', new CoffeePostExsists()]
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $userID=auth()->user()->id;
+
+        $coffeePostComment =  CoffeePostComment::create([
+            'content' => $request->comment_content,
+            'post_id'=>$request->post_id,
+            'user_id'=>$user_id
+        ]);
+
+        return response()->json(['Coffee post comment post saved.',new CoffeePostCommentResource($coffeePostComment)]);
     }
 
     /**
@@ -46,7 +71,7 @@ class CoffeePostCommentController extends Controller
      */
     public function show(CoffeePostComment $coffeePostComment)
     {
-        //
+        return new CoffeePostCommentResource($coffeePostComment);
     }
 
     /**
@@ -80,6 +105,14 @@ class CoffeePostCommentController extends Controller
      */
     public function destroy(CoffeePostComment $coffeePostComment)
     {
-        //
+        $user = auth()->user();
+        $user_role=UserRole::find($user->user_role_id);
+
+        if($coffeePostComment->user_id!=$user->id && !$user_role->role_capability && $user_role->role_slug!=='admin'){
+            return response()->json(['You have not any permissions to do that!']);
+        }
+
+        $coffeePostComment->delete();
+        return response()->json(['Coffee post comment deleted.']);
     }
 }
