@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CoffeePostCollection;
+use App\Http\Resources\CoffeePostResource;
 use App\Models\CoffeePost;
+use App\Rules\CategoryExsists;
+use App\Rules\CoffeeExsists;
+use App\Rules\CoffeePostExsists;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CoffeePostController extends Controller
 {
@@ -14,7 +20,8 @@ class CoffeePostController extends Controller
      */
     public function index()
     {
-        //
+        $coffee_posts = CoffeePost::all();
+        return new CoffeePostCollection($coffee_posts);
     }
 
     /**
@@ -35,7 +42,30 @@ class CoffeePostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'post_content' => 'required|string',
+            'img_path' => 'string',
+            'category_id'=>['required', 'integer', new CategoryExsists()],
+            'coffee_id'=>['integer', new CoffeeExsists()]
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $userID=auth()->user()->id;
+
+        $coffeePost =  CoffeePost::create([
+            'title' => $request->title,
+            'post_content' => $request->post_content,
+            'img_path' => $request->img_path,
+            'category_id'=>$request->category_id,
+            'coffee_id'=>$request->coffee_id,
+            'user_id'=>$userID
+        ]);
+
+        return response()->json(['Coffee post saved.',new CoffeePostResource($coffeePost)]);
     }
 
     /**
@@ -46,7 +76,7 @@ class CoffeePostController extends Controller
      */
     public function show(CoffeePost $coffeePost)
     {
-        //
+        return new CoffeePostResource($coffeePost);
     }
 
     /**
@@ -69,7 +99,32 @@ class CoffeePostController extends Controller
      */
     public function update(Request $request, CoffeePost $coffeePost)
     {
-        //
+        $id = auth()->user()->id;
+
+        if($coffeePost->user_id!=$id){
+            return response()->json(['You have not any permissions to do that!']);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'post_content' => 'required|string',
+            'img_path' => 'string',
+            'category_id'=>['required', 'integer', new CategoryExsists()],
+            'coffee_id'=>['integer', new CoffeeExsists()]
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $coffeePost->title = $request->title;
+        $coffeePost->post_content = $request->post_content;
+        $coffeePost->img_path = $request->img_path;
+        $coffeePost->category_id = $request->category_id;
+        $coffeePost->coffee_id = $request->coffee_id;
+        $coffeePost->save();
+
+        return response()->json(['Coffee post updated.',new CoffeePostResource($coffeePost)]);
     }
 
     /**
@@ -80,6 +135,14 @@ class CoffeePostController extends Controller
      */
     public function destroy(CoffeePost $coffeePost)
     {
-        //
+        $id = auth()->user()->id;
+
+        if($coffeePost->user_id!=$id){
+            return response()->json(['You have not any permissions to do that!']);
+        }
+
+        $coffeePost->delete();
+        return response()->json(['Coffee post deleted.']);
+
     }
 }

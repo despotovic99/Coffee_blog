@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CoffeeController;
+use App\Http\Controllers\CoffeePostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRoleController;
 use App\Models\Category;
@@ -31,6 +32,7 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::resource('category', CategoryController::class)->only(['index', 'show']);
 Route::resource('coffee', CoffeeController::class)->only(['index', 'show']);
+Route::resource('coffee-post', CoffeePostController::class)->only(['index', 'show']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
@@ -41,6 +43,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('user', UserController::class)->only(['index', 'show', 'update', 'destroy']);
 
     Route::resource('coffee', CoffeeController::class)->only(['store', 'update', 'destroy']);
+    Route::resource('coffee-post', CoffeePostController::class)->only(['store', 'update', 'destroy']);
 
     Route::resource('category', CategoryController::class)->only(['store', 'destroy']);
 

@@ -14,8 +14,7 @@ return new class extends Migration {
         Schema::create('coffee_posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('content');
-            $table->integer('number_views');
+            $table->string('post_content');
             $table->string('img_path')->nullable(true);
             $table->foreignId('category_id');
             $table->foreignId('coffee_id')->nullable(true);
