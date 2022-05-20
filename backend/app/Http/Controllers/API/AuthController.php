@@ -18,15 +18,14 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email'=>'required|string|max:255|email|unique:users',
-            'password'=>'required|string|min:5',
-            'user_role_id'=>['required','integer', new UserRoleExsist()],
+            'password'=>'required|string|min:5'
         ]);
 
         if($validator->fails()){
             return response()->json($validator->errors());
         }
 
-        $user_role_id = UserRole::find('viewer')->id;
+        $user_role_id = UserRole::where('role_slug','viewer')->firstOrFail()->id;
         $user = User::create([
             'name'=>$request->name,
             'lastname'=>$request->lastname,

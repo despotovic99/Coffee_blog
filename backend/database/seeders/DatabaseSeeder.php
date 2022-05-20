@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,16 +17,27 @@ class DatabaseSeeder extends Seeder {
     public function run() {
         UserRole::truncate();
         Category::truncate();
+        User::truncate();
+
+
+
 
         Category::factory()->create([
             'name'=>'General',
             'slug'=>'general'
         ]);
 
-        UserRole::factory()->create([
+       $admin= UserRole::factory()->create([
             'role_name' => 'Administrator',
             'role_slug' => 'admin',
             'role_capability' => true,
+        ]);
+
+        User::factory()->create([
+            'name'=>"Admin",
+            'lastname'=>"Admin",
+            'email'=>"admin@admin.com",
+            'user_role_id'=>$admin,
         ]);
         UserRole::factory()->create([
             'role_name' => 'Viewer',
