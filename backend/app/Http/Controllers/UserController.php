@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Models\UserRole;
 use App\Rules\UserRoleExsist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -69,9 +70,11 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user) {
-        $user_logged = auth()->user();
 
-        if ($user_logged->role_slug !== 'admin' || !$user_logged->id !== $user->id) {
+        $user_logged = auth()->user();
+        $user_role=UserRole::find($user_logged->user_role_id);
+        if ($user_role->role_slug != 'admin' && $user_logged->id != $user->id) {
+//            return response()->json([$user_logged,$user_logged->id,$user->id]);
             return response()->json(['You have not any permissions to do that!']);
         }
         $validator = Validator::make($request->all(), [
@@ -89,14 +92,14 @@ class UserController extends Controller {
         $user->name = $request->name;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
-        if ($user_logged->role_slug === 'admin') {
+        if ($user_role->role_slug === 'admin') {
 
             $user->user_role_id = $request->user_role_id;
         }
         $user->password = Hash::make($request->password);
         $user->save();
 
-        auth()->user()->tokens()->delete();
+
         return response()->json(['User successfully updated', new UserResource($user)]);
     }
 
@@ -109,7 +112,7 @@ class UserController extends Controller {
     public function destroy(User $user) {
         $user_logged = auth()->user();
 
-        if ($user_logged->role_slug !== 'admin' || !$user_logged->id !== $user->id) {
+        if ($user_logged->role_slug !== 'admin' && $user_logged->id !== $user->id) {
             return response()->json(['You have not any permissions to do that!']);
         }
         $user->delete();

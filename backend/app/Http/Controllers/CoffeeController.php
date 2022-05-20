@@ -37,7 +37,7 @@ class CoffeeController extends Controller {
     public function store(Request $request) {
         $user = auth()->user();
 
-        if($user->role_slug!=='admin' || !$user->role_capability) {
+        if($user->role_slug!=='admin' && !$user->role_capability) {
             return response()->json(['You have not any permissions to do that!']);
         }
 
@@ -96,7 +96,7 @@ class CoffeeController extends Controller {
 
         $user = auth()->user();
 
-        if($user->role_slug!=='admin' || !$user->role_capability) {
+        if($user->role_slug!=='admin' && !$user->role_capability) {
             return response()->json(['You have not any permissions to do that!']);
         }
 
@@ -131,7 +131,7 @@ class CoffeeController extends Controller {
 
         $user = auth()->user();
 
-        if($user->role_slug!=='admin' || !$user->role_capability) {
+        if($user->role_slug!=='admin' && !$user->role_capability) {
             return response()->json(['You have not any permissions to do that!']);
         }
 

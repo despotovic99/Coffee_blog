@@ -101,7 +101,7 @@ class CoffeePostController extends Controller
     {
         $user = auth()->user();
 
-        if($coffeePost->user_id!=$user->id || !$user->role_capability){
+        if($coffeePost->user_id!=$user->id && !$user->role_capability){
             return response()->json(['You have not any permissions to do that!']);
         }
 
@@ -137,7 +137,7 @@ class CoffeePostController extends Controller
     {
         $user = auth()->user();
 
-        if($coffeePost->user_id!=$user->id || !$user->role_capability){
+        if($coffeePost->user_id!=$user->id && !$user->role_capability){
             return response()->json(['You have not any permissions to do that!']);
         }
 
