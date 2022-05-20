@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserRole;
 use App\Rules\UserRoleExsist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,11 +26,12 @@ class AuthController extends Controller
             return response()->json($validator->errors());
         }
 
+        $user_role_id = UserRole::find('viewer')->id;
         $user = User::create([
             'name'=>$request->name,
             'lastname'=>$request->lastname,
             'email'=>$request->email,
-            'user_role_id'=>$request->user_role_id,
+            'user_role_id'=>$user_role_id,
             'password'=>Hash::make($request->password)
         ]);
 

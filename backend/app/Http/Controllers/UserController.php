@@ -69,27 +69,35 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user) {
+        $user_logged = auth()->user();
+
+        if ($user_logged->role_slug !== 'admin' || !$user_logged->id !== $user->id) {
+            return response()->json(['You have not any permissions to do that!']);
+        }
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'email' => 'required|string|max:255|email|unique:users,email,'.$user->id,
+            'email' => 'required|string|max:255|email|unique:users,email,' . $user->id,
             'password' => 'required|string|min:5',
-            'user_role_id' => ['required', 'integer', new UserRoleExsist()],
+            'user_role_id' => ['integer', new UserRoleExsist()],
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors());
         }
 
-        $user->name=$request->name;
-        $user->lastname=$request->lastname;
-        $user->email=$request->email;
-        $user->user_role_id=$request->user_role_id;
-        $user->password=Hash::make($request->password);
+        $user->name = $request->name;
+        $user->lastname = $request->lastname;
+        $user->email = $request->email;
+        if ($user_logged->role_slug === 'admin') {
+
+            $user->user_role_id = $request->user_role_id;
+        }
+        $user->password = Hash::make($request->password);
         $user->save();
 
         auth()->user()->tokens()->delete();
-        return response()->json(['User successfully updated',new UserResource($user)]);
+        return response()->json(['User successfully updated', new UserResource($user)]);
     }
 
     /**
@@ -99,6 +107,11 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user) {
+        $user_logged = auth()->user();
+
+        if ($user_logged->role_slug !== 'admin' || !$user_logged->id !== $user->id) {
+            return response()->json(['You have not any permissions to do that!']);
+        }
         $user->delete();
         return response()->json('User deleted');
     }

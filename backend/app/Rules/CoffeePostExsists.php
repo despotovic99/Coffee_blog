@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\CoffeePost;
 use Illuminate\Contracts\Validation\Rule;
 
 class CoffeePostExsists implements Rule
@@ -25,7 +26,7 @@ class CoffeePostExsists implements Rule
      */
     public function passes($attribute, $value)
     {
-        //
+        return CoffeePost::find($value)!==null;
     }
 
     /**
@@ -35,6 +36,6 @@ class CoffeePostExsists implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'Coffee post does not exsist.';
     }
 }

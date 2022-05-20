@@ -18,6 +18,7 @@ class UserRoleResource extends JsonResource
             'id' => $this->resource->id,
             'role_name' => $this->resource->role_name,
             'role_slug' => $this->resource->role_slug,
+            'role_capability' => $this->resource->role_capability,
             'created_at' => $this->resource->created_at,
             'updated_at' => $this->resource->updated_at
         ];

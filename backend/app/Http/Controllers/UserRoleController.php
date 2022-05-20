@@ -52,7 +52,8 @@ class UserRoleController extends Controller {
 
             $validator = Validator::make($request->all(), [
                 'role_name' => 'required|string|max:255',
-                'role_slug' => 'required|string|max:255'
+                'role_slug' => 'required|string|max:255',
+                'role_capability' => 'required|boolean'
             ]);
 
             if ($validator->fails()) {
@@ -61,7 +62,8 @@ class UserRoleController extends Controller {
 
             $userRole = UserRole::create([
                 'role_name' => $request->role_name,
-                'role_slug' => $request->role_slug
+                'role_slug' => $request->role_slug,
+                'role_capability' => $request->role_capability,
             ]);
 
             return response()->json(['User role saved.', new UserRoleResource($userRole)]);

@@ -99,9 +99,9 @@ class CoffeePostController extends Controller
      */
     public function update(Request $request, CoffeePost $coffeePost)
     {
-        $id = auth()->user()->id;
+        $user = auth()->user();
 
-        if($coffeePost->user_id!=$id){
+        if($coffeePost->user_id!=$user->id || !$user->role_capability){
             return response()->json(['You have not any permissions to do that!']);
         }
 
@@ -135,9 +135,9 @@ class CoffeePostController extends Controller
      */
     public function destroy(CoffeePost $coffeePost)
     {
-        $id = auth()->user()->id;
+        $user = auth()->user();
 
-        if($coffeePost->user_id!=$id){
+        if($coffeePost->user_id!=$user->id || !$user->role_capability){
             return response()->json(['You have not any permissions to do that!']);
         }
 

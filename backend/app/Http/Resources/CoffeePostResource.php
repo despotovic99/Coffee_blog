@@ -21,7 +21,7 @@ class CoffeePostResource extends JsonResource
         return [
             'id'=>$this->resource->id,
             'title'=>$this->resource->title,
-            'content'=>$this->resource->content,
+            'post_content'=>$this->resource->post_content,
             'number_views'=>$this->resource->number_views,
             'img_path'=>$this->resource->img_path,
             'category_id'=>new CategoryResource(Category::find($this->resource->category_id)),

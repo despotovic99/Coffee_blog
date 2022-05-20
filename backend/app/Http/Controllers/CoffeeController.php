@@ -35,27 +35,34 @@ class CoffeeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'coffee_name' => 'required|string|max:255',
-            'coffee_sort' => 'required|string|max:255',
-            'country_origin' => 'required|string|max:255',
-            'description' => 'string|max:255',
-            'user_id' => ['required', 'integer', new UserExsist()],
-        ]);
+        $user = auth()->user();
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
+        if($user->role_slug!=='admin' || !$user->role_capability) {
+            return response()->json(['You have not any permissions to do that!']);
         }
 
-        $coffee = Coffee::create([
-            'coffee_name' => $request->coffee_name,
-            'coffee_sort' => $request->coffee_sort,
-            'country_origin' => $request->country_origin,
-            'description' => $request->description,
-            'user_id' => $request->user_id,
-        ]);
+            $validator = Validator::make($request->all(), [
+                'coffee_name' => 'required|string|max:255',
+                'coffee_sort' => 'required|string|max:255',
+                'country_origin' => 'required|string|max:255',
+                'description' => 'string|max:255',
+                'user_id' => ['required', 'integer', new UserExsist()],
+            ]);
 
-        return response()->json(['Coffee saved.', new CoffeeResource($coffee)]);
+            if ($validator->fails()) {
+                return response()->json($validator->errors());
+            }
+
+            $coffee = Coffee::create([
+                'coffee_name' => $request->coffee_name,
+                'coffee_sort' => $request->coffee_sort,
+                'country_origin' => $request->country_origin,
+                'description' => $request->description,
+                'user_id' => $request->user_id,
+            ]);
+
+            return response()->json(['Coffee saved.', new CoffeeResource($coffee)]);
+
     }
 
     /**
@@ -87,6 +94,12 @@ class CoffeeController extends Controller {
      */
     public function update(Request $request, Coffee $coffee) {
 
+        $user = auth()->user();
+
+        if($user->role_slug!=='admin' || !$user->role_capability) {
+            return response()->json(['You have not any permissions to do that!']);
+        }
+
         $validator = Validator::make($request->all(), [
             'coffee_name' => 'required|string|max:255',
             'coffee_sort' => 'required|string|max:255',
@@ -115,6 +128,13 @@ class CoffeeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Coffee $coffee) {
+
+        $user = auth()->user();
+
+        if($user->role_slug!=='admin' || !$user->role_capability) {
+            return response()->json(['You have not any permissions to do that!']);
+        }
+
         $coffee->delete();
         return response()->json(['Coffee deleted.']);
     }

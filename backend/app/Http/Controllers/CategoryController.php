@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -36,21 +37,29 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $validator = Validator::make($request->all(),[
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255'
-        ]);
+        $id = auth()->user()->id;
 
-        if($validator->fails()){
-            return response()->json($validator->errors());
+        $user = User::find($id);
+        if ($user->user_role->role_slug == 'admin') {
+
+
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'slug' => 'required|string|max:255'
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json($validator->errors());
+            }
+
+            $category = Category::create([
+                'name' => $request->name,
+                'slug' => $request->slug,
+            ]);
+
+            return response()->json(['Category saved.', new CategoryResource($category)]);
         }
-
-        $category = Category::create([
-            'name'=>$request->name,
-            'slug'=>$request->slug,
-        ]);
-
-        return response()->json(['Category saved.',new CategoryResource($category)]);
+        return response()->json(['You have not any permissions to do that!']);
     }
 
     /**
@@ -91,7 +100,14 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category) {
-        $category->delete();
-        return response()->json('Category deleted successfully');
+        $id = auth()->user()->id;
+
+        $user = User::find($id);
+        if ($user->user_role->role_slug == 'admin') {
+            $category->delete();
+            return response()->json('Category deleted successfully');
+
+        }
+        return response()->json(['You have not any permissions to do that!']);
     }
 }
