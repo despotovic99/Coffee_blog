@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import "../styles/Sidebar.css";
-import sb from  "../images/sidebar.jpg";
+import "../../styles/Sidebar.css";
+import sb from  "../../images/sidebar.jpg";
 import { FaFacebook, FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa';
-import { Button } from "./Button";
+import { Button } from "../pageEssentials/Button";
 
 
 export default function Sidebar() {
@@ -19,7 +19,7 @@ export default function Sidebar() {
           Korisnici mogu da dele svoja iskustva i postavljaju svoje članke.
         </p>
       </div>
-      <div class="sidebarItem">
+      {/*<div class="sidebarItem">
        <div className="sidebarTitle" >PRETRAGA</div>
             <div class="input-group">
                   <input class="inputPretraga" type="text" placeholder="Unesite pojam za pretragu..." aria-label="Unesite pojam za pretragu..." aria-describedby="button-search" />
@@ -33,7 +33,7 @@ export default function Sidebar() {
         </Button>
                   
             </div>
-      </div>
+      </div>*/}
                  
       <div className="sidebarItem">
         <div className="sidebarTitle" >KATEGORIJE</div>

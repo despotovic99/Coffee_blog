@@ -1,26 +1,19 @@
 import React from "react";
-import Navbar from "../components/NavBar";
-import Footer from "../components/Footer";
-import Posts from "../components/SelectedPosts.js";
-import Galery from "../components/Galery.js";
+import Navbar from "../components/navigation/NavBar";
+import Footer from "../components/navigation/Footer";
+import Posts from "../components/post/SelectedPosts.js";
+import Galery from "../components/addition/Galery.js";
 import "../styles/Start.css";
 
-const Home= () => {
+const Home = () => {
   return (
-    
     <>
-    
-    <Navbar/> 
-    <Galery/>
-    
-    <Posts />
-    
-    <Footer/>
-  </>
-
-
-     
+      <Navbar />
+      <Galery />
+      <Posts />
+      <Footer />
+    </>
   );
-}
+};
 
 export default Home;

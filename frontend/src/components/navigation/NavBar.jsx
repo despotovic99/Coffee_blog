@@ -1,32 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "./Button";
-import "../styles/navbar.css";
-import logo from "../images/logo3.png";
+import "../../styles/navbar.css";
+import logo from "../../images/logo3.png";
 import {AiOutlineUser } from 'react-icons/ai';
 
  
 function NavBar() {
   const [click, setClick] = useState(false);
-  
-
-  //const [button, setButton] = useState(true);
-  
   const closeMobileMenu = () => setClick(false);
 
-  /*const showButton = () => {
-    if (window.innerWidth <= 600) {
-      setButton(false);
-    } else {
-      setButton(true);
-    }
-  };
-
-  useEffect(() => {
-    showButton();
-  }, []);
-
-  window.addEventListener("resize", showButton);*/
+  
 
   return (
     <>

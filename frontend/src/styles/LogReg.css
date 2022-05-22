@@ -12,3 +12,18 @@
 #title {
   color: aliceblue;
 }
+
+#btnLogin {
+  background-color: #838282 !important;
+  color: black;
+  padding: 8px 20px;
+  margin-bottom: 1em;
+  transition: all 0.3s ease-out;
+  border: none;
+  border-radius: 10px;
+}
+
+#btnLogin:hover {
+  background-color: #a7a4a4 !important;
+  color: black !important;
+}
