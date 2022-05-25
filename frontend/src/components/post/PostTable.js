@@ -68,10 +68,10 @@ const PostTable = () => {
   return (
     <>
       <NavBar></NavBar>
-      <div class="coffeeTable">
-        <div class="coffeeTableHeader">
+      <div className="coffeeTable">
+        <div className="coffeeTableHeader">
           <h2>Clanci</h2>
-          <button class="btnAddCoffee" value="Open" onClick={openModalAdd}>
+          <button className="btnAddCoffee" value="Open" onClick={openModalAdd}>
             Dodaj novi clanak
           </button>
 
@@ -112,13 +112,13 @@ const PostTable = () => {
                 <td>{p.created_at.getDate()}</td>
                 <td>{p.updated_at.getDate()}</td>
                 <td>
-                  <button class="btnDeleteCoffee" onClick={deletePost}>
+                  <button className="btnDeleteCoffee" onClick={deletePost}>
                     obrisi{" "}
                   </button>
                 </td>
                 <td>
                   <button
-                    class="btnUpdateCoffee"
+                    className="btnUpdateCoffee"
                     value="Open"
                     onClick={openModalView}
                   >
@@ -146,7 +146,7 @@ const PostTable = () => {
                 </td>
                 <td>
                   <button
-                    class="btnUpdateCoffee"
+                    className="btnUpdateCoffee"
                     value="Open"
                     onClick={openModalUpdate}
                   >

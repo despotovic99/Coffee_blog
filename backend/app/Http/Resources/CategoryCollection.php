@@ -12,7 +12,7 @@ class CategoryCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public static $wrap='Categories: ';
+    public static $wrap='categories';
     public function toArray($request)
     {
         return parent::toArray($request);

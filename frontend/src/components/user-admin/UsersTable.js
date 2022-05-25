@@ -47,10 +47,10 @@ const UsersTable = () => {
   return (
     <>
       <NavBar></NavBar>
-      <div class="coffeeTable">
-        <div class="coffeeTableHeader">
+      <div className="coffeeTable">
+        <div className="coffeeTableHeader">
           <h2>Korisnici</h2>
-          <button class="btnAddCoffee" value="Open" onClick={openModal}>
+          <button className="btnAddCoffee" value="Open" onClick={openModal}>
             Dodaj novog korisnika
           </button>
 
@@ -112,13 +112,13 @@ const UsersTable = () => {
                 <td>{u.created_at.getDate()}</td>
                 <td>{u.updated_at.getDate()}</td>
                 <td>
-                  <button class="btnDeleteCoffee" onClick={deleteCoffee}>
+                  <button className="btnDeleteCoffee" onClick={deleteCoffee}>
                     obrisi{" "}
                   </button>
                 </td>
                 <td>
                   <button
-                    class="btnUpdateCoffee"
+                    className="btnUpdateCoffee"
                     value="Open"
                     onClick={openModal}
                   >

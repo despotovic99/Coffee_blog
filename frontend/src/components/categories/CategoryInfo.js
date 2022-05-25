@@ -8,13 +8,13 @@ const CategoryInfo = () => {
 
   return (
     <>
-      <div class="coffee">
-        <div class="row">
-          <div class="column">
+      <div className="coffee">
+        <div className="row">
+          <div className="column">
             <label>Naziv</label>
             <input type="text" maxlength="19" placeholder="" />
           </div>
-          <div class="column">
+          <div className="column">
             <label>Skracenica</label>
             <input type="text" maxlength="19" placeholder="" />
           </div>

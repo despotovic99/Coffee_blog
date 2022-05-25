@@ -16,112 +16,112 @@ const Admin = () => {
   return (
     <>
       <Navbar />
-      <div class="container-Admin">
-        <div class="navigation">
+      <div className="container-Admin">
+        <div className="navigation">
           <ul>
             <li>
               <a href="/home">
-                <span class="icon">
+                <span className="icon">
                   {" "}
                   <GiCoffeeBeans size={20} />
                 </span>
-                <span class="title">Coffee Blog</span>
+                <span className="title">Coffee Blog</span>
               </a>
             </li>
             <li>
               <a href="/coffee">
-                <span class="icon">
+                <span className="icon">
                   <GiCoffeeBeans size={20} />
                 </span>
-                <span class="title">Kafe</span>
+                <span className="title">Kafe</span>
               </a>
             </li>
             <li>
               <a href="/users">
-                <span class="icon">
+                <span className="icon">
                   <FiUsers size={20} />
                 </span>
-                <span class="title">Korisnici</span>
+                <span className="title">Korisnici</span>
               </a>
             </li>
             <li>
               <a href="/posts">
-                <span class="icon">
+                <span className="icon">
                   <MdOutlineArticle size={20} />
                 </span>
-                <span class="title">Postovi</span>
+                <span className="title">Postovi</span>
               </a>
             </li>
             <li>
               <a href="/categories">
-                <span class="icon">
+                <span className="icon">
                   <FaRegComments size={20} />
                 </span>
-                <span class="title">Kategorije</span>
+                <span className="title">Kategorije</span>
               </a>
             </li>
 
             <li>
               <a href="#">
-                <span class="icon">
+                <span className="icon">
                   <AiOutlineLogout size={20} />
                 </span>
-                <span class="title">Izloguj se</span>
+                <span className="title">Izloguj se</span>
               </a>
             </li>
           </ul>
         </div>
 
-        <div class="main">
-          <div class="topbar">
-            <div class="search">
+        <div className="main">
+          <div className="topbar">
+            <div className="search">
               <label>
                 <input type="text" placeholder="Pretraži" />
-                <div class="srch">
+                <div className="srch">
                   <AiOutlineSearch size={35} />
                 </div>
               </label>
             </div>
           </div>
 
-          <div class="cardbox">
-            <div class="card">
+          <div className="cardbox">
+            <div className="card">
               <div>
-                <div class="numbers"> 500</div>
-                <div class="cardName">Postova</div>
+                <div className="numbers"> 500</div>
+                <div className="cardName">Postova</div>
               </div>
-              <div class="iconBx">
+              <div className="iconBx">
                 <MdOutlineArticle size={30} />
               </div>
             </div>
-            <div class="card">
+            <div className="card">
               <div>
-                <div class="numbers"> 80</div>
-                <div class="cardName">Komentara</div>
+                <div className="numbers"> 80</div>
+                <div className="cardName">Komentara</div>
               </div>
-              <div class="iconBx">
+              <div className="iconBx">
                 <FaRegComments size={30} />
               </div>
             </div>
-            <div class="card">
+            <div className="card">
               <div>
-                <div class="numbers"> 284</div>
-                <div class="cardName">Korisnika</div>
+                <div className="numbers"> 284</div>
+                <div className="cardName">Korisnika</div>
               </div>
-              <div class="iconBx">
+              <div className="iconBx">
                 <FiUsers size={30} />
               </div>
             </div>
           </div>
 
-          <div class="details">
-            <div class="recentPosts">
-              <div class="cardHeader">
+          <div className="details">
+            <div className="recentPosts">
+              <div className="cardHeader">
                 <h2>Poslednji postovi</h2>
-                <div class="btn-view">
+                <div className="btn-view">
                   {" "}
                   <Button
-                    class="btnViewAllPosts"
+                    className="btnViewAllPosts"
                     buttonStyle="color"
                     buttonSize="small"
                     text="Pogledaj sve"
@@ -160,14 +160,14 @@ const Admin = () => {
                 </tbody>
               </table>
             </div>
-            <div class="recentCustumers">
-              <div class="cardHeader">
+            <div className="recentCustumers">
+              <div className="cardHeader">
                 <h2>Poslednji ulogovani korisnici</h2>
               </div>
               <table>
                 <tr>
                   <td width="60px">
-                    <div class="imgBx">
+                    <div className="imgBx">
                       <FiUser size={30} />{" "}
                     </div>
                   </td>
@@ -181,7 +181,7 @@ const Admin = () => {
                 </tr>
                 <tr>
                   <td width="60px">
-                    <div class="imgBx">
+                    <div className="imgBx">
                       {" "}
                       <FiUser size={30} />{" "}
                     </div>
@@ -195,7 +195,7 @@ const Admin = () => {
                 </tr>
                 <tr>
                   <td width="60px">
-                    <div class="imgBx">
+                    <div className="imgBx">
                       <FiUser size={30} />{" "}
                     </div>
                   </td>

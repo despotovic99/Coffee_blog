@@ -46,10 +46,10 @@ const CoffeeTable = () => {
   return (
     <>
       <NavBar></NavBar>
-      <div class="coffeeTable">
-        <div class="coffeeTableHeader">
+      <div className="coffeeTable">
+        <div className="coffeeTableHeader">
           <h2>Kafe</h2>
-          <button class="btnAddCoffee" value="Open" onClick={openModal}>
+          <button className="btnAddCoffee" value="Open" onClick={openModal}>
             Dodaj novu kafu
           </button>
 
@@ -111,13 +111,13 @@ const CoffeeTable = () => {
                 <td>{k.created_at.getDate()}</td>
                 <td>{k.updated_at.getDate()}</td>
                 <td>
-                  <button class="btnDeleteCoffee" onClick={deleteCoffee}>
+                  <button className="btnDeleteCoffee" onClick={deleteCoffee}>
                     obrisi{" "}
                   </button>
                 </td>
                 <td>
                   <button
-                    class="btnUpdateCoffee"
+                    className="btnUpdateCoffee"
                     value="Open"
                     onClick={openModal}
                   >

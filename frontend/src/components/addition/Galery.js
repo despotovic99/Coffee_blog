@@ -18,7 +18,7 @@ function Galery() {
   function swapImage() {
     curPic = ++curPic > picPaths.length - 1 ? 0 : curPic;
     imgCont.src = imgO[curPic].src;
-    setTimeout(swapImage, 2250);
+    setTimeout(swapImage, 15000);
   }
 
   window.onload = function () {
