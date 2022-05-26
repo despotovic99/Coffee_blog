@@ -1,7 +1,5 @@
 import {useEffect, useState} from "react";
 import "../../styles/Entity.css";
-import Footer from "../navigation/Footer";
-import NavBar from "../navigation/NavBar";
 import Modal from "react-modal";
 import CategoryInfo from "./CategoryInfo";
 import cb from "../../images/coffeeBean.jpg";
@@ -28,11 +26,11 @@ const CategoryTable = () => {
 
     }
 
-    const [categories, setCategories] = useState();
+    const [categories, setCategories] = useState(null);
 
     useEffect(() => {
         console.log(1)
-        if (categories == null) {
+        if (categories === null) {
             axios.get('http://localhost:8000/api/category')
                 .then((res) => {
                     setCategories(res.data.categories)
@@ -49,7 +47,9 @@ const CategoryTable = () => {
                     <h2>Kategorije</h2>
 
                     <Link className="btnAddCoffee" to='/newCategory'>Dodaj novu kategoriju</Link>
-
+                    <br/>
+                    <br/>
+                    <br/>
                 </div>
 
                 <table className="table">
@@ -59,7 +59,7 @@ const CategoryTable = () => {
                         <td>Skracenica</td>
                         <td>Kreirano</td>
                         <td>Promenjeno</td>
-                        <td>Obrisi</td>
+                        <td></td>
 
                     </tr>
                     </thead>
@@ -83,6 +83,6 @@ const CategoryTable = () => {
             </div>
 
         </>
-    );
+);
 };
 export default CategoryTable;

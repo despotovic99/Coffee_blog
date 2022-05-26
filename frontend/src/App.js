@@ -22,8 +22,8 @@ import Footer from "./components/navigation/Footer";
 
 function App() {
   return (
-    <div className='App'>
-      <Router>
+
+      <Router className='App'>
         <NavBar/>
         <Routes>
           <Route path="/" element={<Start />} />
@@ -44,7 +44,6 @@ function App() {
         </Routes>
         <Footer/>
       </Router>
-    </div>
   );
 }
 

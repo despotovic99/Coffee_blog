@@ -2,6 +2,7 @@ import React from "react";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import "../../styles/Footer.css";
 import { useState } from "react";
+import {Link} from "react-router-dom";
 
 const emailList = [];
 const Footer = () => {
@@ -15,46 +16,46 @@ const Footer = () => {
   };
 
   return (
-    <footer class="footer">
-      <div class="containerFooter">
-        <div class="rowFooter">
-          <div class="footer-col">
+    <footer className="footer">
+      <div className="containerFooter">
+        <div className="rowFooter">
+          <div className="footer-col">
             <h4>zajednica ljubitelja kafe</h4>
             <ul>
               <li>
-                <a href="/home">pocetna</a>
+                <Link to="/home">pocetna</Link>
               </li>
               <li>
-                <a href="/faq">često postavljena pitanja</a>
+                <Link to="/faq">često postavljena pitanja</Link>
               </li>
               <li>
-                <a href="/contact">kontakt</a>
+                <Link to="/contact">kontakt</Link>
               </li>
             </ul>
           </div>
-          <div class="footer-col">
+          <div className="footer-col">
             <h4>personalizacija</h4>
             <ul>
               <li>
-                <a href="/register">napravi nalog</a>
+                <Link to="/register">napravi nalog</Link>
               </li>
               <li>
-                <a href="/login">uloguj se</a>
+                <Link to="/login">uloguj se</Link>
               </li>
             </ul>
           </div>
 
-          <div class="footer-col">
+          <div className="footer-col">
             <h4>zapratite nas</h4>
-            <div class="social-links">
+            <div className="social-links">
               <a href="https://www.facebook.com/">
-                <FaFacebook class="fab fa-facebook-f" size={40} />
+                <FaFacebook className="fab fa-facebook-f" size={40} />
               </a>
               <a href="https://twitter.com/">
-                <FaInstagram class="fab fa-twitter" size={40} />
+                <FaInstagram className="fab fa-twitter" size={40} />
               </a>
               <a href="https://www.instagram.com/">
-                <FaTwitter class="fab fa-instagram" size={40} />
+                <FaTwitter className="fab fa-instagram" size={40} />
               </a>
             </div>
           </div>

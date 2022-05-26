@@ -6,6 +6,7 @@ import l from "../../images/login.jpg";
 import axios from "axios";
 
 const Login = () => {
+
   const history = useNavigate();
   const [loginInput, setLogin] = useState({
     email: "",
@@ -30,8 +31,10 @@ const Login = () => {
         .then((res)=>{
           console.log(res.data)
       if(res.data.success){
-          console.log(res.data.access_token)
+          console.log(res.data)
         window.sessionStorage.setItem('auth_token',res.data.access_token);
+        window.sessionStorage.setItem('user_type',res.data.user_type[0].role_slug);
+         history('/home')
       }
     }).catch((e)=>{
       console.log(e)

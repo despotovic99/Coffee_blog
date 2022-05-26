@@ -43,7 +43,7 @@ function SelectedPosts() {
   return (
     <>
       <div className="home">
-        <div class="selectedcards">
+        <div className="selectedcards">
           {posts.map((bl) => (
             <Post post={bl} key={bl.id} />
           ))}
