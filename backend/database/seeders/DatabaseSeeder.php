@@ -40,6 +40,11 @@ class DatabaseSeeder extends Seeder {
             'user_role_id'=>$admin,
         ]);
         UserRole::factory()->create([
+            'role_name' => 'Post manager',
+            'role_slug' => 'post_manager',
+            'role_capability' => true,
+        ]);
+        UserRole::factory()->create([
             'role_name' => 'Viewer',
             'role_slug' => 'viewer',
             'role_capability' => false,
