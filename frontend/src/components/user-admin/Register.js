@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/LogReg.css";
 import r from "../../images/register.jpg";
-import { Button } from "../pageEssentials/Button";
+import axios from "axios";
 
 const Register = () => {
   const history = useNavigate();
   const [registerInput, setRegister] = useState({
     name: "",
+    lastname: "",
     email: "",
     password: "",
     error_list: [],
@@ -21,7 +22,23 @@ const Register = () => {
     });
   };
 
-  const handleRegister = (e) => {};
+  const handleRegister = (e) => {
+    e.preventDefault()
+    console.log(registerInput)
+    axios.post('http://localhost:8000/api/register',registerInput)
+        .then((res)=>{
+          console.log(res.data)
+          if(res.data.success){
+            window.sessionStorage.setItem('auth_token',res.data.access_token);
+            window.sessionStorage.setItem('user_type',res.data.user_type);
+            history('/home')
+          }else{
+            alert('Greska !')
+          }
+        }).catch((e)=>{
+      console.log(e)
+    })
+  };
 
   return (
     <section
@@ -53,12 +70,24 @@ const Register = () => {
                           type=""
                           id="form2Example11"
                           className="form-control"
-                          placeholder="korisnicko ime"
+                          placeholder="ime"
                           onChange={handleInput}
                           name="name"
                           value={registerInput.name}
                         />
                         <span>{registerInput.error_list.name}</span>
+                      </div>
+                      <div className="form-outline mb-4">
+                        <input
+                            type=""
+                            id="form2Example11"
+                            className="form-control"
+                            placeholder="prezime"
+                            onChange={handleInput}
+                            name="lastname"
+                            value={registerInput.lastname}
+                        />
+                        <span>{registerInput.error_list.lastname}</span>
                       </div>
                       <div className="form-outline mb-4">
                         <input
@@ -75,7 +104,7 @@ const Register = () => {
 
                       <div className="form-outline mb-4">
                         <input
-                          type=""
+                          type="password"
                           id="form2Example22"
                           className="form-control"
                           placeholder="sifra"

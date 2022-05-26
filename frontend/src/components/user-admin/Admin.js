@@ -1,13 +1,10 @@
 import "../../styles/Admin.css";
-import Navbar from "../navigation/NavBar";
 import { GiCoffeeBeans } from "react-icons/gi";
 import {
   AiOutlineLogout,
   AiOutlineSearch,
-  AiOutlineUser,
 } from "react-icons/ai";
 import { FaRegComments } from "react-icons/fa";
-import { BiStats } from "react-icons/bi";
 import { FiUsers, FiUser } from "react-icons/fi";
 import { MdOutlineArticle } from "react-icons/md";
 import { Button } from "../pageEssentials/Button";

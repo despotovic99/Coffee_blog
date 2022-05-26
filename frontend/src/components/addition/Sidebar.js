@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "../../styles/Sidebar.css";
 import sb from  "../../images/sidebar.jpg";
 import { FaFacebook, FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa';
-import { Button } from "../pageEssentials/Button";
 
 
 export default function Sidebar() {

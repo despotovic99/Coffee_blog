@@ -21,7 +21,7 @@ function NavBar() {
 
                     <ul className={click ? "Nav-menu active" : "Nav-menu"}>
                         {
-                            window.sessionStorage.getItem('user_type') == 'admin' ?
+                            window.sessionStorage.getItem('user_type') === 'admin' ?
                                 <li className="item">
                                     <Link to="/admin" className="link" onClick={closeMobileMenu}>
                                         Admin
