@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/LogReg.css";
 import l from "../../images/login.jpg";
+import axios from "axios";
 
 const Login = () => {
   const history = useNavigate();
@@ -18,9 +19,24 @@ const Login = () => {
       ...loginInput,
       [e.target.name]: e.target.value,
     });
+
+
   };
 
-  const handleLogin = (e) => {};
+  const handleLogin = (e) => {
+    e.preventDefault()
+    console.log(loginInput)
+    axios.post('http://localhost:8000/api/login',loginInput)
+        .then((res)=>{
+          console.log(res.data)
+      if(res.data.success){
+          console.log(res.data.access_token)
+        window.sessionStorage.setItem('auth_token',res.data.access_token);
+      }
+    }).catch((e)=>{
+      console.log(e)
+    })
+  };
 
   return (
     <>

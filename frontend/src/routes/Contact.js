@@ -7,11 +7,10 @@ import Con from '../components/addition/Contact';
 const Contact = () => {
     return (
         <div>
-            <Navbar />
-            <Con />
-            <Footer/>
-            
-            
+
+            <Con/>
+
+
         </div>
     )
 }

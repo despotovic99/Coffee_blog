@@ -6,9 +6,9 @@ import Blogs from "../components/post/AllPosts";
 const Contact = () => {
   return (
     <div>
-      <Navbar />
+
       <Blogs />
-      <Footer />
+
     </div>
   );
 };

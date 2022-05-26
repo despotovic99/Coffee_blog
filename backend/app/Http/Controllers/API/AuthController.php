@@ -49,7 +49,7 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json(['message'=>'Successfully logged in '.$user->name." ".$user->lastname,
-            'access_token'=>$token,'token_type'=>'Bearer']);
+            'access_token'=>$token,'token_type'=>'Bearer','success'=>true]);
 
     }
 

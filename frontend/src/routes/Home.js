@@ -8,10 +8,8 @@ import "../styles/Start.css";
 const Home = () => {
   return (
     <>
-      <Navbar />
       <Galery />
       <Posts />
-      <Footer />
     </>
   );
 };

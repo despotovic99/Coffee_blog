@@ -23,20 +23,20 @@ const AddPost = () => {
           buttonSize="large"
           text="Potvrdi"
           route="/posts"
-        ></Button>
+        />
       </div>
       <div class="blog">
         <textarea
           type="text"
           class="title"
           placeholder="Nalov novog članka..."
-        ></textarea>
+        />
 
         <textarea
           type="text"
           class="article"
           placeholder="Počnite da pišete ovde..."
-        ></textarea>
+        />
       </div>
     </>
   );

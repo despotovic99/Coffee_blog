@@ -16,11 +16,15 @@ import "./styles/App.css";
 import UsersTable from "./components/user-admin/UsersTable";
 import PostTable from "./components/post/PostTable";
 import CategoryTable from "./components/categories/CategoryTable";
+import CategoryInfo from "./components/categories/CategoryInfo";
+import NavBar from "./components/navigation/NavBar";
+import Footer from "./components/navigation/Footer";
 
 function App() {
   return (
-    <>
+    <div className='App'>
       <Router>
+        <NavBar/>
         <Routes>
           <Route path="/" element={<Start />} />
           <Route path="/home" element={<Home />} />
@@ -36,9 +40,11 @@ function App() {
           <Route path="/users" element={<UsersTable />} />
           <Route path="/posts" element={<PostTable />} />
           <Route path="/categories" element={<CategoryTable />} />
+          <Route path="/newCategory" element={<CategoryInfo />} />
         </Routes>
+        <Footer/>
       </Router>
-    </>
+    </div>
   );
 }
 

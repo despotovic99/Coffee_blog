@@ -45,7 +45,7 @@ const CoffeeTable = () => {
 
   return (
     <>
-      <NavBar></NavBar>
+
       <div className="coffeeTable">
         <div className="coffeeTableHeader">
           <h2>Kafe</h2>
@@ -161,7 +161,7 @@ const CoffeeTable = () => {
           </tbody>
         </table>
       </div>
-      <Footer></Footer>
+
     </>
   );
 };

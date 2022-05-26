@@ -26,17 +26,8 @@ const CategoryInfo = () => {
           buttonStyle="color"
           buttonSize="small"
           text="Dodaj"
-          route="/categories"
           onClick={potvrdi}
-        ></Button>
-        <Button
-          className="btnUpdateCoffeeInfo"
-          buttonStyle="color"
-          buttonSize="small"
-          text="Izmeni"
-          route="/categories"
-          onClick={potvrdi}
-        ></Button>
+        />
       </div>
     </>
   );

@@ -46,7 +46,6 @@ const UsersTable = () => {
 
   return (
     <>
-      <NavBar></NavBar>
       <div className="coffeeTable">
         <div className="coffeeTableHeader">
           <h2>Korisnici</h2>
@@ -162,7 +161,7 @@ const UsersTable = () => {
           </tbody>
         </table>
       </div>
-      <Footer></Footer>
+
     </>
   );
 };

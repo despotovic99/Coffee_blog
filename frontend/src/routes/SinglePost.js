@@ -6,9 +6,8 @@ import SingleBP from "../components/post/SingleBP";
 const SinglePost = () => {
   return (
     <>
-      <Navbar />
+
       <SingleBP />
-      <Footer />
     </>
   );
 };

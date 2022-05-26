@@ -67,7 +67,6 @@ const PostTable = () => {
 
   return (
     <>
-      <NavBar></NavBar>
       <div className="coffeeTable">
         <div className="coffeeTableHeader">
           <h2>Clanci</h2>
@@ -178,7 +177,7 @@ const PostTable = () => {
           </tbody>
         </table>
       </div>
-      <Footer></Footer>
+
     </>
   );
 };

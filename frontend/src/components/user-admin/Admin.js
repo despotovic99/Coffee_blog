@@ -15,7 +15,7 @@ import { Button } from "../pageEssentials/Button";
 const Admin = () => {
   return (
     <>
-      <Navbar />
+
       <div className="container-Admin">
         <div className="navigation">
           <ul>
@@ -126,7 +126,7 @@ const Admin = () => {
                     buttonSize="small"
                     text="Pogledaj sve"
                     route="/posts"
-                  ></Button>
+                  />
                 </div>
               </div>
               <table>

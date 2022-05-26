@@ -6,9 +6,8 @@ import FAQ from '../components/addition/Faq';
 const Faq = () => {
     return (
         <div>
-            <Navbar />
             <FAQ />
-            <Footer/>
+
             
             
         </div>
