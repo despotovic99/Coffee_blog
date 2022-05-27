@@ -8,7 +8,7 @@ const AddPost = () => {
     const [categories, setCategories] = useState(null);
     const [coffees, setCoffees] = useState(null);
 
-    useEffect(()=>{
+    useEffect(() => {
         if (coffees === null) {
             axios.get('http://localhost:8000/api/coffee')
                 .then((res) => {
@@ -17,7 +17,7 @@ const AddPost = () => {
 
             })
         }
-    },[coffees]);
+    }, [coffees]);
 
     useEffect(() => {
 
@@ -31,6 +31,40 @@ const AddPost = () => {
         }
     }, [categories])
 
+    const [postInput, setPost] = useState({
+        title: "",
+        post_content: "",
+        category_id: "",
+        coffee_id: "",
+    });
+
+    const handleInput = (e) => {
+        e.persist();
+        setPost({
+            ...postInput,
+            [e.target.name]: e.target.value,
+        });
+
+
+    };
+
+    function sacuvajPost(e) {
+        e.preventDefault()
+        axios.post('http://localhost:8000/api/coffee-post',postInput,{
+            headers: {
+                'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token')
+            }
+        })
+            .then((res)=>{
+                console.log(res.data)
+                if(res.data.success){
+                    alert(res.data.message)
+                }
+            }).catch((e)=>{
+            console.log(e)
+        })
+    }
+
     return (
         <div>
             <div class="image">
@@ -39,19 +73,14 @@ const AddPost = () => {
                     <AiOutlineCamera size={35}/>
                 </label>
             </div>
-            <div class="btn">
-                <button
-                    className="publish-btn"
-                >Potvrdi
-                </button>
-            </div>
             <div class="blog">
-                <form>
+                <form onSubmit={sacuvajPost}>
                     <input
                         type="text"
                         name="title"
                         className="title"
                         placeholder="Naslov novog članka..."
+                        onChange={handleInput}
                     />
 
                     <textarea
@@ -59,10 +88,12 @@ const AddPost = () => {
                         className="article"
                         name='post_content'
                         placeholder="Počnite da pišete ovde..."
+                        onChange={handleInput}
                     />
                     <div>
                         <label>Izaberi kategoriju</label>
-                        <select name='category_id'>
+                        <select name='category_id' onChange={handleInput}>
+                            <option value=''>Odaberi</option>
                             {categories == null ? <></> : categories.map((kategorija) => (
                                 <option key={kategorija.id} value={kategorija.id}>{kategorija.name}</option>
                             ))}
@@ -70,12 +101,18 @@ const AddPost = () => {
                     </div>
                     <div>
                         <label>Izaberi kafu</label>
-                        <select name='coffee_id'>
+                        <select name='coffee_id' onChange={handleInput}>
+                            <option value>Nema</option>
                             {coffees == null ? <></> : coffees.map((coffee) => (
                                 <option key={coffee.id} value={coffee.id}>{coffee.coffee_name}</option>
                             ))}
                         </select>
                     </div>
+                    <button
+                        className="publish-btn"
+                        type='submit'
+                    >Potvrdi
+                    </button>
                 </form>
             </div>
         </div>

@@ -3,12 +3,31 @@ import {Link} from "react-router-dom";
 import "../../styles/navbar.css";
 import logo from "../../images/logo3.png";
 import {AiOutlineUser} from 'react-icons/ai';
+import axios from "axios";
 
 
 function NavBar() {
     const [click, setClick] = useState(false);
     const closeMobileMenu = () => setClick(false);
 
+    function logoutUser(e) {
+        e.preventDefault()
+        axios.post('http://localhost:8000/api/logout', {}, {
+            headers: {
+                'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token')
+            }
+        })
+            .then((res) => {
+                console.log(res.data)
+                if (res.data.success) {
+                    alert(res.data.message)
+                    window.sessionStorage.clear()
+                    window.location.reload()
+                }
+            }).catch((e) => {
+            console.log(e)
+        })
+    }
 
     return (
         <>
@@ -48,12 +67,14 @@ function NavBar() {
                             </Link>
                         </li>
                         <li className="item">
-                            <a href="/login" class='user' style={{color: "white"}}> <AiOutlineUser style={{
-                                marginTop: -10 + "px",
-                                marginLeft: '2rem',
-                                width: 40 + "px",
-                                height: 100 + "px"
-                            }}/> </a>
+                            {window.sessionStorage.getItem('auth_token') == null ?
+                                <Link to="/login" className='user' style={{color: "white"}}> <AiOutlineUser style={{
+                                    marginTop: -10 + "px",
+                                    marginLeft: '2rem',
+                                    width: 40 + "px",
+                                    height: 100 + "px"
+                                }}/> </Link> : <button onClick={logoutUser}>Odjavi se</button>}
+
                         </li>
                     </ul>
 

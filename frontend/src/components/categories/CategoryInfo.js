@@ -1,35 +1,70 @@
 import "../../styles/Entity.css";
-import { Button } from "../pageEssentials/Button";
+import {useState} from "react";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const CategoryInfo = () => {
-  function potvrdi() {
-    console.log("TO DO update and add");
-  }
 
-  return (
-    <>
-      <div className="coffee">
-        <div className="row">
-          <div className="column">
-            <label>Naziv</label>
-            <input type="text" maxlength="19" placeholder="" />
-          </div>
-          <div className="column">
-            <label>Skracenica</label>
-            <input type="text" maxlength="19" placeholder="" />
-          </div>
-        </div>
-      </div>
-      <div className="btnInfo">
-        <Button
-          className="btnUpdateCoffeeInfo"
-          buttonStyle="color"
-          buttonSize="small"
-          text="Dodaj"
-          onClick={potvrdi}
-        />
-      </div>
-    </>
-  );
+    const navigate = useNavigate()
+
+    function sacuvajKategoriju(e) {
+        e.preventDefault()
+        axios.post('http://localhost:8000/api/category', categoryInput, {
+            headers: {
+                'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token')
+            }
+        })
+            .then((res) => {
+                console.log(res.data)
+                alert(res.data.message)
+
+                if (res.data.success) {
+                    navigate('/categories')
+                }
+
+            }).catch((e) => {
+            console.log(e)
+            alert(e.message + '\nProveri unos ')
+        })
+    }
+
+    const [categoryInput, setCategory] = useState({
+        name: "",
+        slug: "",
+
+    });
+
+    const handleInput = (e) => {
+        e.persist();
+        setCategory({
+            ...categoryInput,
+            [e.target.name]: e.target.value,
+        });
+
+
+    };
+
+    return (
+        <>
+            <div className="coffee">
+                <form onSubmit={sacuvajKategoriju}>
+                    <h1>Dodavanje kategorije</h1>
+                    <div className="row">
+                        <div className="column">
+                            <label>Naziv</label>
+                            <input type="text" name="name" placeholder="" onChange={handleInput}/>
+                        </div>
+                        <div className="column">
+                            <label>Skracenica</label>
+                            <input type="text" name="slug" placeholder="" onChange={handleInput}/>
+                        </div>
+                        <div className="column">
+                            <button type='submit'>Dodaj kategoriju</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </>
+    );
 };
 export default CategoryInfo;

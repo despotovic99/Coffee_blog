@@ -12,15 +12,13 @@ use App\Rules\CoffeePostExsists;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class CoffeePostController extends Controller
-{
+class CoffeePostController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $coffee_posts = CoffeePost::all();
         return new CoffeePostCollection($coffee_posts);
     }
@@ -30,80 +28,75 @@ class CoffeePostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'post_content' => 'required|string',
             'img_path' => 'string',
-            'category_id'=>['required', 'integer', new CategoryExsists()],
-            'coffee_id'=>['integer', new CoffeeExsists()]
+            'category_id' => ['required', 'integer', new CategoryExsists()],
+            'coffee_id' => ['integer', new CoffeeExsists()]
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors());
         }
 
-        $userID=auth()->user()->id;
+        $userID = auth()->user()->id;
 
-        $coffeePost =  CoffeePost::create([
+        $coffeePost = CoffeePost::create([
             'title' => $request->title,
             'post_content' => $request->post_content,
             'img_path' => $request->img_path,
-            'category_id'=>$request->category_id,
-            'coffee_id'=>$request->coffee_id,
-            'user_id'=>$userID
+            'category_id' => $request->category_id,
+            'coffee_id' => $request->coffee_id,
+            'user_id' => $userID
         ]);
 
-        return response()->json(['Coffee post saved.',new CoffeePostResource($coffeePost)]);
+        return response()->json(['success'=>true,'message'=>'Coffee post saved.',new CoffeePostResource($coffeePost)]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CoffeePost  $coffeePost
+     * @param \App\Models\CoffeePost $coffeePost
      * @return \Illuminate\Http\Response
      */
-    public function show(CoffeePost $coffeePost)
-    {
+    public function show(CoffeePost $coffeePost) {
         return new CoffeePostResource($coffeePost);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CoffeePost  $coffeePost
+     * @param \App\Models\CoffeePost $coffeePost
      * @return \Illuminate\Http\Response
      */
-    public function edit(CoffeePost $coffeePost)
-    {
+    public function edit(CoffeePost $coffeePost) {
         //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CoffeePost  $coffeePost
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\CoffeePost $coffeePost
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CoffeePost $coffeePost)
-    {
+    public function update(Request $request, CoffeePost $coffeePost) {
         $user = auth()->user();
-        $user_role=UserRole::find($user->user_role_id);
+        $user_role = UserRole::find($user->user_role_id);
 
-        if($coffeePost->user_id!=$user->id && !$user_role->role_capability && $user_role->role_slug!=='admin'){
+        if ($coffeePost->user_id != $user->id && !$user_role->role_capability && $user_role->role_slug !== 'admin') {
             return response()->json(['You have not any permissions to do that!']);
         }
 
@@ -111,8 +104,8 @@ class CoffeePostController extends Controller
             'title' => 'required|string|max:255',
             'post_content' => 'required|string',
             'img_path' => 'string',
-            'category_id'=>['required', 'integer', new CategoryExsists()],
-            'coffee_id'=>['integer', new CoffeeExsists()]
+            'category_id' => ['required', 'integer', new CategoryExsists()],
+            'coffee_id' => ['integer', new CoffeeExsists()]
         ]);
 
         if ($validator->fails()) {
@@ -126,21 +119,20 @@ class CoffeePostController extends Controller
         $coffeePost->coffee_id = $request->coffee_id;
         $coffeePost->save();
 
-        return response()->json(['Coffee post updated.',new CoffeePostResource($coffeePost)]);
+        return response()->json(['success'=>true,'message'=>'Coffee post updated.',new CoffeePostResource($coffeePost)]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CoffeePost  $coffeePost
+     * @param \App\Models\CoffeePost $coffeePost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CoffeePost $coffeePost)
-    {
+    public function destroy(CoffeePost $coffeePost) {
         $user = auth()->user();
-        $user_role=UserRole::find($user->user_role_id);
+        $user_role = UserRole::find($user->user_role_id);
 
-        if($coffeePost->user_id!=$user->id && !$user_role->role_capability && $user_role->role_slug!=='admin'){
+        if ($coffeePost->user_id != $user->id && !$user_role->role_capability && $user_role->role_slug !== 'admin') {
             return response()->json(['You have not any permissions to do that!']);
         }
 

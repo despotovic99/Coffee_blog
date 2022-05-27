@@ -1,13 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "../../styles/LogReg.css";
 import l from "../../images/login.jpg";
 import axios from "axios";
 
 const Login = () => {
 
-  const history = useNavigate();
   const [loginInput, setLogin] = useState({
     email: "",
     password: "",
@@ -34,7 +32,8 @@ const Login = () => {
           console.log(res.data)
         window.sessionStorage.setItem('auth_token',res.data.access_token);
         window.sessionStorage.setItem('user_type',res.data.user_type[0].role_slug);
-         history('/home')
+        window.location.href='/home'
+
       }
     }).catch((e)=>{
       console.log(e)

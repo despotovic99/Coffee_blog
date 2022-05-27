@@ -10,7 +10,6 @@ const CategoryTable = () => {
 
     function deleteCategory(id_category) {
         let url = 'http://localhost:8000/api/category/' + id_category;
-        console.log(window.sessionStorage.getItem('auth_token'))
         let token = 'Bearer ' + window.sessionStorage.getItem('auth_token');
         axios.delete(url, {
             headers: {
@@ -18,7 +17,8 @@ const CategoryTable = () => {
             }
         })
             .then((res) => {
-                console.log(res)
+                alert(res.data)
+                window.location.reload()
             }).catch((e) => {
             console.log(e)
         })
@@ -83,6 +83,6 @@ const CategoryTable = () => {
             </div>
 
         </>
-);
+    );
 };
 export default CategoryTable;

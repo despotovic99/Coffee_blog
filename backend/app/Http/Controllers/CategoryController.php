@@ -49,7 +49,7 @@ class CategoryController extends Controller {
             ]);
 
             if ($validator->fails()) {
-                return response()->json($validator->errors());
+                return response()->json(['message'=>$validator->errors()]);
             }
 
             $category = Category::create([
@@ -57,9 +57,9 @@ class CategoryController extends Controller {
                 'slug' => $request->slug,
             ]);
 
-            return response()->json(['Category saved.', new CategoryResource($category)]);
+            return response()->json(['success'=>true,'message'=>'Category saved.', new CategoryResource($category)]);
         }
-        return response()->json(['You have not any permissions to do that!']);
+        return response()->json(['success'=>false,'message'=>'You have not any permissions to do that!']);
     }
 
     /**
