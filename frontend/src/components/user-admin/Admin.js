@@ -12,7 +12,6 @@ import { Button } from "../pageEssentials/Button";
 const Admin = () => {
   return (
     <>
-
       <div className="container-Admin">
         <div className="navigation">
           <ul>
