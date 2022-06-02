@@ -62,7 +62,7 @@ class CoffeePostController extends Controller {
             'user_id' => $userID
         ]);
 
-        return response()->json(['success'=>true,'message'=>'Coffee post saved.',new CoffeePostResource($coffeePost)]);
+        return response()->json(['success' => true, 'message' => 'Coffee post saved.', new CoffeePostResource($coffeePost)]);
     }
 
     /**
@@ -119,7 +119,7 @@ class CoffeePostController extends Controller {
         $coffeePost->coffee_id = $request->coffee_id;
         $coffeePost->save();
 
-        return response()->json(['success'=>true,'message'=>'Coffee post updated.',new CoffeePostResource($coffeePost)]);
+        return response()->json(['success' => true, 'message' => 'Coffee post updated.', new CoffeePostResource($coffeePost)]);
     }
 
     /**
@@ -139,5 +139,11 @@ class CoffeePostController extends Controller {
         $coffeePost->delete();
         return response()->json(['Coffee post deleted.']);
 
+    }
+
+    public function show_newest() {
+
+        $posts = CoffeePost::all()->take(5);
+        return new CoffeePostCollection($posts);
     }
 }

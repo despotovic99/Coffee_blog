@@ -27,16 +27,20 @@ const CategoryTable = () => {
     }
 
     const [categories, setCategories] = useState(null);
+    const [i, setI] = useState(0);
 
     useEffect(() => {
-        console.log(1)
-        if (categories === null) {
-            axios.get('http://localhost:8000/api/category')
-                .then((res) => {
-                    setCategories(res.data.categories)
-                }).catch((e) => {
+        if (i === 0) {
+            console.log(1)
+            if (categories === null) {
+                axios.get('http://localhost:8000/api/category')
+                    .then((res) => {
+                        setCategories(res.data.categories)
+                        setI(1);
+                    }).catch((e) => {
 
-            })
+                })
+            }
         }
     }, [categories])
 

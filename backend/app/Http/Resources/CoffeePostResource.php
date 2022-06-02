@@ -15,7 +15,7 @@ class CoffeePostResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public static $wrap='Coffee_post: ';
+    public static $wrap='post';
     public function toArray($request)
     {
         return [
@@ -26,7 +26,7 @@ class CoffeePostResource extends JsonResource
             'category_id'=>new CategoryResource(Category::find($this->resource->category_id)),
             'coffee_id'=>new CoffeeResource(Coffee::find($this->resource->coffee_id)),
             'user_id'=>new UserResource(User::find($this->resource->user_id)),
-            'created_at	'=>$this->resource->created_at,
+            'created_at'=>$this->resource->created_at,
             'updated_at'=>$this->resource->updated_at,
         ];
     }

@@ -12,7 +12,7 @@ class CoffeePostCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public static $wrap='Coffee_post_collection: ';
+    public static $wrap='posts';
     public function toArray($request)
     {
         return parent::toArray($request);

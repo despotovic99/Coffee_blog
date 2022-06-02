@@ -35,6 +35,7 @@ Route::resource('category', CategoryController::class)->only(['index', 'show']);
 Route::resource('coffee', CoffeeController::class)->only(['index', 'show']);
 Route::resource('coffee-post', CoffeePostController::class)->only(['index', 'show']);
 Route::resource('coffee-post-comment', CoffeePostCommentController::class)->only(['index', 'show']);
+Route::get('coffee-post-newest',[CoffeePostController::class,'show_newest']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 

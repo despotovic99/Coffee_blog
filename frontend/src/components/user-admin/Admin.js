@@ -161,6 +161,7 @@ const Admin = () => {
                 <h2>Poslednji ulogovani korisnici</h2>
               </div>
               <table>
+                <tbody>
                 <tr>
                   <td width="60px">
                     <div className="imgBx">
@@ -203,6 +204,7 @@ const Admin = () => {
                     </h4>
                   </td>
                 </tr>
+                </tbody>
               </table>
             </div>
           </div>
