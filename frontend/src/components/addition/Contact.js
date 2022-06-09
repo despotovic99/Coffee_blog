@@ -19,13 +19,13 @@ export const Contact = () => {
     console.log("Ime: " + vN + "\n  Email: " + vE + "\n Poruka: " + vM);
   };
   return (
-    <div class="ContactPage">
-      <div class="containerContact">
-        <div class="header">
+    <div className="ContactPage">
+      <div className="containerContact">
+        <div className="header">
           <h1>KONTAKT</h1>
         </div>
-        <div class="content">
-          <div class="content-form">
+        <div className="content">
+          <div className="content-form">
             <div>
               <h2>
                 Facebook <BsFacebook style={{ marginRight: "1rem" }} />
@@ -46,9 +46,9 @@ export const Contact = () => {
           </div>
         </div>
 
-        <div class="form">
-          <div class="right">
-            <div class="contact-form">
+        <div className="form">
+          <div className="right">
+            <div className="contact-form">
               <InputField
                 value={name}
                 id="name"
@@ -61,7 +61,7 @@ export const Contact = () => {
               </div>
             </div>
 
-            <div class="contact-form">
+            <div className="contact-form">
               <InputField
                 value={email}
                 id="email"
@@ -73,7 +73,7 @@ export const Contact = () => {
                 E-mail{" "}
               </div>
             </div>
-            <div class="contact-form">
+            <div className="contact-form">
               <textarea
                 name="text"
                 value={message}
@@ -88,7 +88,7 @@ export const Contact = () => {
               </div>
             </div>
 
-            <div class="contact-form">
+            <div className="contact-form">
               <Button
                 className="btnReset"
                 buttonStyle="color"

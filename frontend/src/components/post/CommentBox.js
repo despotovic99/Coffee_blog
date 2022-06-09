@@ -2,22 +2,22 @@ import React from "react";
 import "../../styles/SingleBP.css";
 import { AiOutlineUser } from "react-icons/ai";
 
-function CommentBox() {
+function CommentBox({comment}) {
   return (
     <>
       <div
-        class="d-flex "
+        className="d-flex "
         style={{ height: "160%", border: "1px solid rgba(0, 0, 0, 0.25)" }}
       >
-        <div class="flex-shrink-0">
+        <div className="flex-shrink-0">
           <AiOutlineUser style={{ marginLeft: "2rem" }} />
         </div>
-        <div class="ms-3">
-          <div class="fw-bold" style={{ paddingBottom: "1em" }}>
-            <b>Username1</b>
+        <div className="ms-3">
+          <div className="fw-bold" style={{ paddingBottom: "1em" }}>
+            <b>{comment.user_id.name} {comment.user_id.lastname}</b>
           </div>
-          <div class="d-grid flex-column">
-            Komentar......
+          <div className="d-grid flex-column">
+              {comment.content}
             <button
               style={{
                 marginLeft: "-3.5em",

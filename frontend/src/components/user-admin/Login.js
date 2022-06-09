@@ -3,6 +3,7 @@ import { useState } from "react";
 import "../../styles/LogReg.css";
 import l from "../../images/login.jpg";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const Login = () => {
 
@@ -46,7 +47,7 @@ const Login = () => {
         className="h-100 gradient-form"
         id="logPage"
         style={{
-          backgroundColor: +"#eee",
+          backgroundColor: "rgba(0,0,0,0.8)",
         }}
       >
         <div className="container py-5 h-100" id="logCon">
@@ -97,14 +98,14 @@ const Login = () => {
                         </div>
 
                         <div className="loginToRegister">
-                          <a href="/register">
+                          <Link to="/register">
                             <p
                               className="mb-0 me-2"
                               style={{ color: "white", textDecoration: "none" }}
                             >
                               Ne posedujem nalog.
                             </p>
-                          </a>
+                          </Link>
                         </div>
                       </form>
                     </div>

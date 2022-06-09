@@ -10,12 +10,14 @@ function SingleBP() {
     let id = useParams();
 
     const [post, setPost] = useState(null);
+    const [comments, setComments] = useState(null);
     useEffect(() => {
         if (post === null) {
             axios.get('http://localhost:8000/api/coffee-post/' + id.id)
                 .then((res) => {
-                    setPost(res.data.post)
                     console.log(res.data)
+                    setPost(res.data.post)
+                    setComments(res.data.comments);
                 }).catch((e) => {
             })
         }
@@ -34,12 +36,9 @@ function SingleBP() {
                                     Postavljeno {(new Date(post.created_at)).toLocaleDateString()} Postavio {post.user_id.name} {post.user_id.lastname}
                                 </div>
                                 <p className="badge bg-dark text-decoration-none link-light">
-                                    {post.category_id.name}
+                                Kategorija: {post.category_id.name}
                                 </p>
                             </header>
-                            <figure className="mb-4">
-                                <img className="img-fluid rounded" src={p4} alt="..."/>
-                            </figure>
                             <section className="mb-8">
                                 <p className="fs-5 mb-4">
                                     {post.post_content}
@@ -71,9 +70,9 @@ function SingleBP() {
                                         </button>
                                     </form>
                                     <div>
-                                        <CommentBox/>
-                                        <CommentBox/>
-                                        <CommentBox/>
+                                        {comments === null ? <></> : comments.map((comment) => (
+                                            <CommentBox key={comment.id} comment={comment}/>
+                                        ))}
                                     </div>
                                 </div>
                             </div>

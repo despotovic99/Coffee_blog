@@ -21,8 +21,6 @@ const AllPosts = () => {
   }, [posts])
   return (
     <>
-      <video src="/videos/allposts.mp4" autoPlay loop muted />
-
       <div className="allcards">
         {posts===null?<></>:
             posts.map((post) => (

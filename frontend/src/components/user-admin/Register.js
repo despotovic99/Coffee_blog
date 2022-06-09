@@ -45,7 +45,7 @@ const Register = () => {
       className="h-100 gradient-form"
       id="logPage"
       style={{
-        backgroundColor: +"#eee",
+        backgroundColor: "rgba(0,0,0,0.82)",
       }}
     >
       <div className="container py-5 h-100" id="logCon">
@@ -80,7 +80,7 @@ const Register = () => {
                       <div className="form-outline mb-4">
                         <input
                             type=""
-                            id="form2Example11"
+                            id="form2Example111"
                             className="form-control"
                             placeholder="prezime"
                             onChange={handleInput}

@@ -35,12 +35,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/addPost" element={<AddPost />} />
+          <Route path="/addPost/:id" element={<AddPost />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/coffee" element={<CoffeeTable />} />
           <Route path="/users" element={<UsersTable />} />
           <Route path="/posts" element={<PostTable />} />
           <Route path="/categories" element={<CategoryTable />} />
           <Route path="/newCategory" element={<CategoryInfo />} />
+          <Route path="/funFacts" element={<></>} />
         </Routes>
         <Footer/>
       </Router>

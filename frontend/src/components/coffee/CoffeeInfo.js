@@ -8,9 +8,9 @@ const CoffeeInfo = () => {
 
   return (
     <>
-      <div class="coffee">
-        <div class="row">
-          <div class="column">
+      <div className="coffee">
+        <div className="row">
+          <div className="column">
             <label>Naziv</label>
             <input type="text" maxlength="19" placeholder="" />
 
@@ -19,7 +19,7 @@ const CoffeeInfo = () => {
             <label>Kratak opis</label>
             <input type="text" maxlength="19" placeholder="" />
           </div>
-          <div class="column">
+          <div className="column">
             <label>Poreklo</label>
             <input type="text" maxlength="19" placeholder="" />
             <label>Kreator</label>

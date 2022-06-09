@@ -9,7 +9,7 @@ function InputField(props) {
   return (
     <>
      
-      <input type={inputType} value={inputValue} name="input-form" onChange={props.onChange} class="inputclass" placeholder={placehold}/>
+      <input type={inputType} value={inputValue} name="input-form" onChange={props.onChange} className="inputclass" placeholder={placehold}/>
     </>
   );
 }

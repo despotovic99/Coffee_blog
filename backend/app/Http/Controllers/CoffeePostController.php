@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CoffeePostCollection;
+use App\Http\Resources\CoffeePostCommentCollection;
 use App\Http\Resources\CoffeePostResource;
 use App\Models\CoffeePost;
+use App\Models\CoffeePostComment;
 use App\Models\UserRole;
 use App\Rules\CategoryExsists;
 use App\Rules\CoffeeExsists;
@@ -42,13 +44,12 @@ class CoffeePostController extends Controller {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'post_content' => 'required|string',
-            'img_path' => 'string',
             'category_id' => ['required', 'integer', new CategoryExsists()],
-            'coffee_id' => ['integer', new CoffeeExsists()]
+            'coffee_id' => ['integer','nullable', new CoffeeExsists()]
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            return response()->json(['error'=>'ERROR: Post not saved!','message'=>$validator->errors()]);
         }
 
         $userID = auth()->user()->id;
@@ -56,7 +57,6 @@ class CoffeePostController extends Controller {
         $coffeePost = CoffeePost::create([
             'title' => $request->title,
             'post_content' => $request->post_content,
-            'img_path' => $request->img_path,
             'category_id' => $request->category_id,
             'coffee_id' => $request->coffee_id,
             'user_id' => $userID
@@ -72,7 +72,8 @@ class CoffeePostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(CoffeePost $coffeePost) {
-        return new CoffeePostResource($coffeePost);
+        $comments = CoffeePostComment::all()->where('post_id', '=', $coffeePost->id);
+        return ['post' => new CoffeePostResource($coffeePost), 'comments' => new CoffeePostCommentCollection($comments)];
     }
 
     /**
@@ -103,18 +104,16 @@ class CoffeePostController extends Controller {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'post_content' => 'required|string',
-            'img_path' => 'string',
             'category_id' => ['required', 'integer', new CategoryExsists()],
-            'coffee_id' => ['integer', new CoffeeExsists()]
+            'coffee_id' => ['integer','nullable', new CoffeeExsists()]
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            return response()->json(['error'=>'ERROR: Post not updated!','message'=>$validator->errors()]);
         }
 
         $coffeePost->title = $request->title;
         $coffeePost->post_content = $request->post_content;
-        $coffeePost->img_path = $request->img_path;
         $coffeePost->category_id = $request->category_id;
         $coffeePost->coffee_id = $request->coffee_id;
         $coffeePost->save();

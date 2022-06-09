@@ -20,8 +20,8 @@ export default function Sidebar() {
       </div>
       {/*<div class="sidebarItem">
        <div className="sidebarTitle" >PRETRAGA</div>
-            <div class="input-group">
-                  <input class="inputPretraga" type="text" placeholder="Unesite pojam za pretragu..." aria-label="Unesite pojam za pretragu..." aria-describedby="button-search" />
+            <div className="input-group">
+                  <input className="inputPretraga" type="text" placeholder="Unesite pojam za pretragu..." aria-label="Unesite pojam za pretragu..." aria-describedby="button-search" />
                   <Button
           route="\home"
           className="btnPretraga"
@@ -38,23 +38,18 @@ export default function Sidebar() {
         <div className="sidebarTitle" >KATEGORIJE</div>
         <ul className="sidebarList">
           <li className="sidebarListItem">
-            <a href="#">
-              Recepti
-            </a>
-          </li>
-          <li className="sidebarListItem">
-          <a href="#" >
+          <Link to="/funFacts" >
           Zanimljivosti
-        </a>
+        </Link>
           </li>
         </ul>
       </div>
       <div className="sidebarItem">
         <div className="sidebarTitle">ZAPRATITE NAS</div>
         <div className="sidebarSocial">
-        <a href="#"><FaFacebook class="fab fa-facebook-f" size={30} /></a>
-                        <a href="#"><FaInstagram class="fab fa-twitter"  size={30}/></a>
-                        <a href="#"><FaTwitter class="fab fa-instagram" size={30}/></a>
+        <p><FaFacebook className="fab fa-facebook-f" size={30} /></p>
+                        <p><FaInstagram className="fab fa-twitter"  size={30}/></p>
+                        <p><FaTwitter className="fab fa-instagram" size={30}/></p>
         </div>
       </div>
     </div>

@@ -7,10 +7,7 @@ import Con from '../components/addition/Contact';
 const Contact = () => {
     return (
         <div>
-
             <Con/>
-
-
         </div>
     )
 }

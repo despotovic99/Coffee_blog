@@ -102,7 +102,7 @@ const CoffeeTable = () => {
           </thead>
           <tbody id="tableBody">
             {coffee.map((k) => (
-              <tr>
+              <tr key={k.id}>
                 <td>{k.coffee_name} </td>
                 <td>{k.coffee_sort}</td>
                 <td>{k.country_origin}</td>

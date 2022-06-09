@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->string('post_content');
-            $table->string('img_path')->nullable(true);
             $table->foreignId('category_id');
             $table->foreignId('coffee_id')->nullable(true);
             $table->foreignId('user_id');

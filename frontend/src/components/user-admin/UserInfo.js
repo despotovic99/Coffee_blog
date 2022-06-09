@@ -9,9 +9,9 @@ const UserInfo = () => {
   }
   return (
     <>
-      <div class="coffee">
-        <div class="row">
-          <div class="column">
+      <div className="coffee">
+        <div className="row">
+          <div className="column">
             <label>Ime</label>
             <input type="text" maxlength="19" placeholder="" />
 
@@ -20,11 +20,11 @@ const UserInfo = () => {
             <label>Email</label>
             <input type="text" maxlength="19" placeholder="" />
           </div>
-          <div class="column">
+          <div className="column">
             <label>Sifra</label>
             <input type="text" maxlength="19" placeholder="" />
             <label>Korisnicka uloga</label>
-            <div class="in">
+            <div className="in">
               <select id="combo">
                 <option>admin</option>
                 <option>visitor</option>
