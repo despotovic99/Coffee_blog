@@ -31,6 +31,7 @@ const Register = () => {
           if(res.data.success){
             window.sessionStorage.setItem('auth_token',res.data.access_token);
             window.sessionStorage.setItem('user_type',res.data.user_type);
+            window.sessionStorage.setItem('user_id', res.data.user_id);
             history('/home')
           }else{
             alert('Greska !')

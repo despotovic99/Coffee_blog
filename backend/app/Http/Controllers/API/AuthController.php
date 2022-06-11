@@ -22,7 +22,7 @@ class AuthController extends Controller {
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['success'=>false,'error'=>strval($validator->errors())]);
+            return response()->json(['success' => false, 'error' => strval($validator->errors())]);
         }
 
         $user_role_id = UserRole::where('role_slug', 'viewer')->firstOrFail()->id;
@@ -35,7 +35,8 @@ class AuthController extends Controller {
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
-        return response()->json(['message'=>'New user successfully created.','data' => $user, 'access_token' => $token, 'token_type' => 'Bearer', 'success' => true, 'user_type' => 'viewer']);
+        return response()->json(['message' => 'New user successfully created.', 'data' => $user, 'access_token' => $token,
+            'token_type' => 'Bearer', 'success' => true, 'user_type' => 'viewer', 'user_id' => $user->id]);
     }
 
     public function login(Request $request) {
@@ -50,16 +51,17 @@ class AuthController extends Controller {
             ->join('user_roles', 'users.user_role_id', '=', 'user_roles.id')
             ->select('user_roles.role_slug')
             ->where('users.id', '=', $user->id)
-        ->get();
+            ->get();
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json(['message' => 'Successfully logged in ' . $user->name . " " . $user->lastname,
-            'access_token' => $token, 'token_type' => 'Bearer', 'success' => true, 'user_type' => $userRole]);
+            'access_token' => $token, 'token_type' => 'Bearer', 'success' => true,
+            'user_type' => $userRole, 'user_id' => $user->id]);
 
     }
 
     public function logout(Request $request) {
         auth()->user()->tokens()->delete();
-        return response()->json(['message' => 'Successfully logged out','success'=>true]);
+        return response()->json(['message' => 'Successfully logged out', 'success' => true]);
     }
 }

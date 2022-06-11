@@ -22,7 +22,7 @@ function NavBar() {
                 if (res.data.success) {
                     alert(res.data.message)
                     window.sessionStorage.clear()
-                    window.location.reload()
+                    window.location.href = '/'
                 }
             }).catch((e) => {
             console.log(e)
@@ -65,13 +65,23 @@ function NavBar() {
                             Kontakt
                         </Link>
                     </li>
+                    <li className='item'>
+                        {window.sessionStorage.getItem('auth_token') == null ?
+                            <></> :
+                            <Link className='link'
+                                  to={'/user/' + window.sessionStorage.getItem('user_id')}>Profil</Link>
+                        }
+                    </li>
                     <li className="item">
                         {window.sessionStorage.getItem('auth_token') == null ?
                             <Link to="/login" className='user' style={{color: "white"}}> <AiOutlineUser style={{
                                 marginTop: -10 + "px", marginLeft: '2rem', width: 40 + "px", height: 100 + "px"
-                            }}/> </Link> : <button onClick={logoutUser}>Odjavi se</button>}
+                            }}/> </Link> :
+                            <button className='link' style={{height: '40px', marginTop: '20px', color: 'black'}}
+                                    onClick={logoutUser}>Odjava</button>}
 
                     </li>
+
                 </ul>
 
 
