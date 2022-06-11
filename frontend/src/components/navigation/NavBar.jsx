@@ -29,60 +29,55 @@ function NavBar() {
         })
     }
 
-    return (
-        <>
-            <nav className="Navbar">
-                <div className="Navbar-container">
-                    <div className='Navb-logo' onClick={closeMobileMenu}>
-                        <Link to="/"><img src={logo} alt=''/> </Link>
-                    </div>
-
-
-                    <ul className={click ? "Nav-menu active" : "Nav-menu"}>
-                        {
-                            window.sessionStorage.getItem('user_type') === 'admin' ?
-                                <li className="item">
-                                    <Link to="/admin" className="link" onClick={closeMobileMenu}>
-                                        Admin
-                                    </Link>
-                                </li> : <></>}
-                        <li className="item">
-                            <Link to="/home" className="link" onClick={closeMobileMenu}>
-                                Početna
-                            </Link>
-                        </li>
-                        <li className="item">
-                            <Link to="/blogs" className="link" onClick={closeMobileMenu}>
-                                Članci
-                            </Link>
-                        </li>
-                        <li className="item">
-                            <Link to="/faq" className="link" onClick={closeMobileMenu}>
-                                FAQ
-                            </Link>
-                        </li>
-                        <li className="item">
-                            <Link to="/contact" className="link" onClick={closeMobileMenu}>
-                                Kontakt
-                            </Link>
-                        </li>
-                        <li className="item">
-                            {window.sessionStorage.getItem('auth_token') == null ?
-                                <Link to="/login" className='user' style={{color: "white"}}> <AiOutlineUser style={{
-                                    marginTop: -10 + "px",
-                                    marginLeft: '2rem',
-                                    width: 40 + "px",
-                                    height: 100 + "px"
-                                }}/> </Link> : <button onClick={logoutUser}>Odjavi se</button>}
-
-                        </li>
-                    </ul>
-
-
+    return (<>
+        <nav className="Navbar">
+            <div className="Navbar-container">
+                <div className='Navb-logo' onClick={closeMobileMenu}>
+                    <Link to="/"><img src={logo} alt=''/></Link>
                 </div>
-            </nav>
-        </>
-    );
+
+
+                <ul className={click ? "Nav-menu active" : "Nav-menu"}>
+                    {(window.sessionStorage.getItem('user_type') === 'admin' ||
+                        window.sessionStorage.getItem('user_type') === 'post_manager') ?
+                        <li className="item">
+                            <Link to="/admin" className="link" onClick={closeMobileMenu}>
+                                Admin
+                            </Link>
+                        </li> : <></>}
+                    <li className="item">
+                        <Link to="/home" className="link" onClick={closeMobileMenu}>
+                            Početna
+                        </Link>
+                    </li>
+                    <li className="item">
+                        <Link to="/blogs" className="link" onClick={closeMobileMenu}>
+                            Članci
+                        </Link>
+                    </li>
+                    <li className="item">
+                        <Link to="/faq" className="link" onClick={closeMobileMenu}>
+                            FAQ
+                        </Link>
+                    </li>
+                    <li className="item">
+                        <Link to="/contact" className="link" onClick={closeMobileMenu}>
+                            Kontakt
+                        </Link>
+                    </li>
+                    <li className="item">
+                        {window.sessionStorage.getItem('auth_token') == null ?
+                            <Link to="/login" className='user' style={{color: "white"}}> <AiOutlineUser style={{
+                                marginTop: -10 + "px", marginLeft: '2rem', width: 40 + "px", height: 100 + "px"
+                            }}/> </Link> : <button onClick={logoutUser}>Odjavi se</button>}
+
+                    </li>
+                </ul>
+
+
+            </div>
+        </nav>
+    </>);
 }
 
 export default NavBar;

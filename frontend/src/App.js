@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 import Faq from "./routes/Faq";
 import Contact from "./routes/Contact";
@@ -19,34 +19,48 @@ import CategoryTable from "./components/categories/CategoryTable";
 import CategoryInfo from "./components/categories/CategoryInfo";
 import NavBar from "./components/navigation/NavBar";
 import Footer from "./components/navigation/Footer";
+import CoffeeInfo from "./components/coffee/CoffeeInfo";
+import UserInfo from "./components/user-admin/UserInfo";
 
 function App() {
-  return (
+    console.log('Provera app componente')
+    return (
 
-      <Router className='App'>
-        <NavBar/>
-        <Routes>
-          <Route path="/" element={<Start />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/singleBP/:id" element={<SingleBP />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/addPost" element={<AddPost />} />
-          <Route path="/addPost/:id" element={<AddPost />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/coffee" element={<CoffeeTable />} />
-          <Route path="/users" element={<UsersTable />} />
-          <Route path="/posts" element={<PostTable />} />
-          <Route path="/categories" element={<CategoryTable />} />
-          <Route path="/newCategory" element={<CategoryInfo />} />
-          <Route path="/funFacts" element={<></>} />
-        </Routes>
-        <Footer/>
-      </Router>
-  );
+        <Router className='App'>
+            <NavBar/>
+            <Routes>
+                <Route path="/" element={<Start/>}/>
+                <Route path="/home" element={<Home/>}/>
+                <Route path="/faq" element={<Faq/>}/>
+                <Route path="/contact" element={<Contact/>}/>
+                <Route path="/blogs" element={<Blogs/>}/>
+                <Route path="/singleBP/:id" element={<SingleBP/>}/>
+
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/register" element={<Register/>}/>
+
+                <Route path="/addPost" element={<AddPost/>}/>
+                <Route path="/addPost/:id" element={<AddPost/>}/>
+                <Route path="/admin" element={<Admin/>}/>
+
+                <Route path="/coffees" element={<CoffeeTable/>}/>
+                <Route path="/coffee" element={<CoffeeInfo/>}/>
+                <Route path="/coffee/:id" element={<CoffeeInfo/>}/>
+
+                <Route path="/users" element={<UsersTable/>}/>
+                <Route path="/user" element={<UserInfo/>}/>
+                <Route path="/user/:id" element={<UserInfo/>}/>
+
+
+                <Route path="/posts" element={<PostTable/>}/>
+                <Route path="/categories" element={<CategoryTable/>}/>
+                <Route path="/newCategory" element={<CategoryInfo/>}/>
+                {/*todo servis*/}
+                <Route path="/funFacts" element={<></>}/>
+            </Routes>
+            <Footer/>
+        </Router>
+    );
 }
 
 export default App;

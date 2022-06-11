@@ -12,6 +12,7 @@ function SingleBP() {
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState(null);
     useEffect(() => {
+        console.log("Single post"+123)
         if (post === null) {
             axios.get('http://localhost:8000/api/coffee-post/' + id.id)
                 .then((res) => {

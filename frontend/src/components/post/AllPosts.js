@@ -11,6 +11,7 @@ import axios from "axios";
 const AllPosts = () => {
   const [posts,setPosts] = useState(null);
   useEffect(() => {
+      console.log("All posts"+123)
     if (posts === null) {
       axios.get('http://localhost:8000/api/coffee-post')
           .then((res) => {

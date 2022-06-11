@@ -63,7 +63,7 @@ class CoffeeController extends Controller {
                 'user_id' => $user_logged->id
             ]);
 
-            return response()->json(['Coffee saved.', new CoffeeResource($coffee)]);
+            return response()->json(['success' => true, 'message' => 'Coffee saved.', new CoffeeResource($coffee)]);
 
     }
 
@@ -119,7 +119,7 @@ class CoffeeController extends Controller {
         $coffee->country_origin = $request->country_origin;
         $coffee->description = $request->description;
         $coffee->save();
-        return response()->json(['Coffee updated.', new CoffeeResource($coffee)]);
+        return response()->json(['success' => true, 'message' => 'Coffee updated.', new CoffeeResource($coffee)]);
     }
 
     /**

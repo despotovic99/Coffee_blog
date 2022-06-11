@@ -8,6 +8,7 @@ import { FaRegComments } from "react-icons/fa";
 import { FiUsers, FiUser } from "react-icons/fi";
 import { MdOutlineArticle } from "react-icons/md";
 import { Button } from "../pageEssentials/Button";
+import {Link} from "react-router-dom";
 
 const Admin = () => {
   return (
@@ -16,45 +17,45 @@ const Admin = () => {
         <div className="navigation">
           <ul>
             <li>
-              <a href="/home">
+              <Link to="/home">
                 <span className="icon">
                   {" "}
                   <GiCoffeeBeans size={20} />
                 </span>
                 <span className="title">Coffee Blog</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/coffee">
+              <Link to="/coffees">
                 <span className="icon">
                   <GiCoffeeBeans size={20} />
                 </span>
                 <span className="title">Kafe</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/users">
+              <Link to="/users">
                 <span className="icon">
                   <FiUsers size={20} />
                 </span>
                 <span className="title">Korisnici</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/posts">
+              <Link to="/posts">
                 <span className="icon">
                   <MdOutlineArticle size={20} />
                 </span>
                 <span className="title">Postovi</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/categories">
+              <Link to="/categories">
                 <span className="icon">
                   <FaRegComments size={20} />
                 </span>
                 <span className="title">Kategorije</span>
-              </a>
+              </Link>
             </li>
 
             <li>

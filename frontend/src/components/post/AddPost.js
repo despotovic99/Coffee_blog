@@ -1,5 +1,4 @@
 import "../../styles/AddPost.css";
-import {AiOutlineCamera} from "react-icons/ai";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
@@ -32,14 +31,9 @@ const AddPost = () => {
         }
     }, [categories])
 
-    const [postInput, setPostInput] = useState({
-        title: "",
-        post_content: "",
-        category_id: "",
-        coffee_id: "",
-    });
 
     const handleInput = (e) => {
+        console.log(postInput)
         e.persist();
         setPostInput({
             ...postInput,
@@ -49,38 +43,57 @@ const AddPost = () => {
 
     };
     let id = useParams();
-
-    const [post, setPost] = useState(null);
+    const [postInput, setPostInput] = useState(null);
     useEffect(() => {
-        if (post === null && id.id!==undefined) {
+        if (postInput === null && id.id !== undefined) {
             axios.get('http://localhost:8000/api/coffee-post/' + id.id)
                 .then((res) => {
                     console.log(res.data)
-                    setPost(res.data.post)
+                    setPostInput(res.data.post)
                 }).catch((e) => {
             })
         }
-    }, [post])
+    }, [postInput])
 
 
     function sacuvajPost(e) {
         e.preventDefault()
-        axios.post('http://localhost:8000/api/coffee-post', postInput, {
-            headers: {
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token')
-            }
-        })
-            .then((res) => {
-                console.log(res)
-                if (res.data.success) {
-                    alert(res.data.message)
-                    window.location.href='/blogs'
-                } else {
-                    alert(res.data.error)
+        console.log(postInput)
+        if (id.id !== null && id.id !== undefined) {
+            axios.put('http://localhost:8000/api/coffee-post/' + id.id, postInput, {
+                headers: {
+                    'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token')
                 }
-            }).catch((e) => {
-            console.log(e)
-        })
+            })
+                .then((res) => {
+                    console.log(res)
+                    if (res.data.success) {
+                        alert(res.data.message)
+                        window.location.href = '/posts'
+                    } else {
+                        alert(res.data.error)
+                    }
+                }).catch((e) => {
+                console.log(e)
+            })
+        } else {
+            axios.post('http://localhost:8000/api/coffee-post', postInput, {
+                headers: {
+                    'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token')
+                }
+            })
+                .then((res) => {
+                    console.log(res)
+                    if (res.data.success) {
+                        alert(res.data.message)
+                        window.location.href = '/posts'
+                    } else {
+                        alert(res.data.error)
+                    }
+                }).catch((e) => {
+                console.log(e)
+            })
+        }
     }
 
     return (
@@ -94,7 +107,8 @@ const AddPost = () => {
                         className="title"
                         placeholder="Naslov novog članka..."
                         onChange={handleInput}
-                        value={post==null?"":post.title}
+                        value={postInput == null ? '' : postInput.title}
+
                     />
 
                     <textarea
@@ -102,11 +116,12 @@ const AddPost = () => {
                         name='post_content'
                         placeholder="Počnite da pišete ovde..."
                         onChange={handleInput}
-                        value={post==null?"":post.post_content}
+                        value={postInput == null ? '' : postInput.post_content}
                     />
                     <div>
                         <label>Izaberi kategoriju</label>
-                        <select name='category_id' onChange={handleInput} value={post!=null&&post.category_id!=null? post.category_id.id:0}>
+                        <select name='category_id' onChange={handleInput}
+                                value={postInput == null || postInput.category_id == null ? '' : postInput.category_id.id}>
                             <option value=''>Odaberi</option>
                             {categories == null ? <></> : categories.map((kategorija) => (
                                 <option key={kategorija.id} value={kategorija.id}>{kategorija.name}</option>
@@ -115,7 +130,8 @@ const AddPost = () => {
                     </div>
                     <div>
                         <label>Izaberi kafu</label>
-                        <select name='coffee_id' onChange={handleInput} value={post!=null&&post.coffee_id!=null? post.coffee_id.id:0}>
+                        <select name='coffee_id' onChange={handleInput}
+                                value={postInput == null || postInput.coffee_id == null ? '' : postInput.coffee_id.id}>
                             <option value>Nema</option>
                             {coffees == null ? <></> : coffees.map((coffee) => (
                                 <option key={coffee.id} value={coffee.id}>{coffee.coffee_name}</option>

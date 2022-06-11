@@ -19,7 +19,12 @@ class UserController extends Controller {
      */
     public function index() {
         $users = User::all();
-        return new UserCollection($users);
+        $user_logged = auth()->user();
+        $user_role = UserRole::find($user_logged->user_role_id);
+        if ($user_role->role_slug != 'admin' || $user_role->role_capability != 1) {
+            return response()->json(['success' => false, 'error' => 'You have not any permissions to do that!']);
+        }
+        return response()->json(['success' => true, 'users' => new UserCollection($users)]);
     }
 
     /**
@@ -48,7 +53,12 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(User $user) {
-        return new UserResource($user);
+        $user_logged = auth()->user();
+        $user_role = UserRole::find($user_logged->user_role_id);
+        if ($user_role->role_slug != 'admin' && $user_logged->id != $user->id) {
+            return response()->json(['success' => false, 'error' => 'You have not any permissions to do that!']);
+        }
+        return response()->json(['success' => true, 'user' => new UserResource($user)]);
     }
 
     /**
@@ -72,7 +82,7 @@ class UserController extends Controller {
     public function update(Request $request, User $user) {
 
         $user_logged = auth()->user();
-        $user_role=UserRole::find($user_logged->user_role_id);
+        $user_role = UserRole::find($user_logged->user_role_id);
         if ($user_role->role_slug != 'admin' && $user_logged->id != $user->id) {
 //            return response()->json([$user_logged,$user_logged->id,$user->id]);
             return response()->json(['You have not any permissions to do that!']);
@@ -100,7 +110,7 @@ class UserController extends Controller {
         $user->save();
 
 
-        return response()->json(['User successfully updated', new UserResource($user)]);
+        return response()->json(['success' => true, 'message' => 'User successfully updated.', new UserResource($user)]);
     }
 
     /**
@@ -111,9 +121,9 @@ class UserController extends Controller {
      */
     public function destroy(User $user) {
         $user_logged = auth()->user();
-        $user_role=UserRole::find($user_logged->user_role_id);
+        $user_role = UserRole::find($user_logged->user_role_id);
         if ($user_role->role_slug != 'admin' && $user_logged->id != $user->id) {
-            return response()->json(['You have not any permissions to do that!']);
+            return response()->json(['success' => false, 'error' => 'You have not any permissions to do that!']);
         }
         $user->delete();
         return response()->json('User deleted');

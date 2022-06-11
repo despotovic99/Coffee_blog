@@ -1,168 +1,94 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import "../../styles/Entity.css";
 import Footer from "../navigation/Footer";
 import NavBar from "../navigation/NavBar";
 import Modal from "react-modal";
 import CoffeeInfo from "./CoffeeInfo";
 import cb from "../../images/coffeeBean.jpg";
+import axios from "axios";
+import {Link} from "react-router-dom";
 
 const CoffeeTable = () => {
-  function deleteCoffee() {
-    console.log("TODO obrisati kafu..");
-  }
-  const [modalIsOpen, setIsOpen] = useState(false);
+    function deleteCoffee(id) {
+        let url = 'http://localhost:8000/api/coffee/' + id;
+        let token = 'Bearer ' + window.sessionStorage.getItem('auth_token');
+        axios.delete(url, {
+            headers: {
+                'Authorization': token
+            }
+        })
+            .then((res) => {
+                alert(res.data)
+                window.location.reload()
+            }).catch((e) => {
+            console.log(e)
+        })
+    }
 
-  function openModal() {
-    setIsOpen(true);
-  }
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+    const [coffees,setCoffeess] = useState(null);
+    useEffect(() => {
+        console.log("All posts"+123)
+        if (coffees === null) {
+            axios.get('http://localhost:8000/api/coffee')
+                .then((res) => {
+                    setCoffeess(res.data.coffees)
+                }).catch((e) => {
+            })
+        }
+    }, [coffees])
+    return (
+        <>
+            <div className="coffeeTable">
+                <div className="coffeeTableHeader">
+                    <h2>Kafe</h2>
+                    <Link className="btnAddCoffee" to='/coffee'>
+                        Dodaj novu kafu
+                    </Link>
+                </div>
 
-  const [coffee] = useState([
-    {
-      id: 1,
-      coffee_name: "Kafa 1",
-      coffee_sort: "Kafa vrsta 1",
-      country_origin: "Brazil",
-      description: "rt",
-      user_id: 1,
-      created_at: new Date(),
-      updated_at: new Date(),
-    },
-    {
-      id: 2,
-      coffee_name: "Kafa 2",
-      coffee_sort: "Kafa vrsta 2",
-      country_origin: "Brazil",
-      description: "rt",
-      user_id: 4,
-      created_at: new Date(),
-      updated_at: new Date(),
-    },
-  ]);
-
-  return (
-    <>
-
-      <div className="coffeeTable">
-        <div className="coffeeTableHeader">
-          <h2>Kafe</h2>
-          <button className="btnAddCoffee" value="Open" onClick={openModal}>
-            Dodaj novu kafu
-          </button>
-
-          <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            contentLabel="Nova kafa"
-          >
-            <div className="modalContent">
-              <div className="columnInfo">
-                <button
-                  onClick={closeModal}
-                  id="radius"
-                  className="btnUpdateCoffee"
-                >
-                  Zatvori
-                </button>
-                <h2 className="modalTitle">Detalji o kafi</h2>
-                <CoffeeInfo />
-              </div>
-              <div className="columnInfo">
-                <img
-                  src={cb}
-                  alt=""
-                  style={{
-                    width: "600px",
-                    height: "480px",
-                    margin: "10px",
-                    borderRadius: "1em",
-                  }}
-                />
-              </div>
+                <table className="table">
+                    <thead>
+                    <tr id="tableCol">
+                        <td>Naziv</td>
+                        <td>Vrsta</td>
+                        <td>Poreklo</td>
+                        <td>Kratak opis</td>
+                        <td>Kreator</td>
+                        <td>Kreirano</td>
+                        <td>Promenjeno</td>
+                        <td>Obrisi</td>
+                        <td>Izmeni</td>
+                    </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    {coffees == null ? <></> : coffees.map((k) => (
+                        <tr key={k.id}>
+                            <td>{k.coffee_name} </td>
+                            <td>{k.coffee_sort}</td>
+                            <td>{k.country_origin}</td>
+                            <td>{k.description}</td>
+                            <td>{k.user_id.name}</td>
+                            <td>{new Date(k.created_at).toLocaleDateString()}</td>
+                            <td>{new Date(k.updated_at).toLocaleDateString()}</td>
+                            <td>
+                                <button className="btnDeleteCoffee" onClick={()=>deleteCoffee(k.id)}>
+                                    Obrisi
+                                </button>
+                            </td>
+                            <td>
+                                <Link
+                                    className="btnUpdateCoffee"
+                                    to={'/coffee/'+k.id}
+                                >Izmeni</Link>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
             </div>
-          </Modal>
-        </div>
 
-        <table className="table">
-          <thead>
-            <tr id="tableCol">
-              <td>Naziv</td>
-              <td>Vrsta</td>
-              <td>Poreklo</td>
-              <td>Kratak opis</td>
-              <td>Kreator</td>
-              <td>Kreirano</td>
-              <td>Promenjeno</td>
-              <td>Obrisi</td>
-              <td>Izmeni</td>
-            </tr>
-          </thead>
-          <tbody id="tableBody">
-            {coffee.map((k) => (
-              <tr key={k.id}>
-                <td>{k.coffee_name} </td>
-                <td>{k.coffee_sort}</td>
-                <td>{k.country_origin}</td>
-                <td>{k.description}</td>
-                <td>{k.user_id}</td>
-                <td>{k.created_at.getDate()}</td>
-                <td>{k.updated_at.getDate()}</td>
-                <td>
-                  <button className="btnDeleteCoffee" onClick={deleteCoffee}>
-                    obrisi{" "}
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="btnUpdateCoffee"
-                    value="Open"
-                    onClick={openModal}
-                  >
-                    izmeni
-                  </button>
-
-                  <Modal
-                    isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
-                    contentLabel="Detalji o kafi"
-                  >
-                    <div className="modalContent">
-                      <div className="columnInfo">
-                        <button
-                          onClick={closeModal}
-                          id="radius"
-                          className="btnUpdateCoffee"
-                        >
-                          Zatvori
-                        </button>
-                        <h2 className="modalTitle">Detalji o kafi</h2>
-                        <CoffeeInfo />
-                      </div>
-                      <div className="columnInfo">
-                        <img
-                          src={cb}
-                          alt=""
-                          style={{
-                            width: "600px",
-                            height: "480px",
-                            margin: "10px",
-                            borderRadius: "1em",
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </Modal>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-    </>
-  );
+        </>
+    );
 };
 export default CoffeeTable;

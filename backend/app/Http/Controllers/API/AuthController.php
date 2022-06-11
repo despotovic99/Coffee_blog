@@ -22,7 +22,7 @@ class AuthController extends Controller {
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            return response()->json(['success'=>false,'error'=>strval($validator->errors())]);
         }
 
         $user_role_id = UserRole::where('role_slug', 'viewer')->firstOrFail()->id;
@@ -35,7 +35,7 @@ class AuthController extends Controller {
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
-        return response()->json(['data' => $user, 'access_token' => $token, 'token_type' => 'Bearer', 'success' => true, 'user_type' => 'viewer']);
+        return response()->json(['message'=>'New user successfully created.','data' => $user, 'access_token' => $token, 'token_type' => 'Bearer', 'success' => true, 'user_type' => 'viewer']);
     }
 
     public function login(Request $request) {

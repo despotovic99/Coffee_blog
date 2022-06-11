@@ -12,6 +12,7 @@ import axios from "axios";
 function SelectedPosts() {
   const [posts,setPosts] = useState(null);
   useEffect(() => {
+      console.log("Selected"+123)
          if (posts === null) {
         axios.get('http://localhost:8000/api/coffee-post-newest')
             .then((res) => {

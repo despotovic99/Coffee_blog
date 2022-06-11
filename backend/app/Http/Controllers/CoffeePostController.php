@@ -104,7 +104,7 @@ class CoffeePostController extends Controller {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'post_content' => 'required|string',
-            'category_id' => ['required', 'integer', new CategoryExsists()],
+            'category_id' => ['required', new CategoryExsists()],
             'coffee_id' => ['integer','nullable', new CoffeeExsists()]
         ]);
 
