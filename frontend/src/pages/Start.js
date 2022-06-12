@@ -1,5 +1,4 @@
 import React from "react";
-import {Button} from "../components/pageEssentials/Button";
 import "../styles/Start.css";
 import {Link} from "react-router-dom";
 

@@ -39,7 +39,7 @@ const Admin = () => {
                 }).catch((e) => {
             })
         }
-    }, [statistics])
+    })
 
 
     return (

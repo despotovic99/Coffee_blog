@@ -30,7 +30,7 @@ const PostTable = () => {
           }).catch((e) => {
       })
     }
-  }, [posts])
+  })
 
 
 

@@ -1,8 +1,5 @@
 import {useEffect, useState} from "react";
 import "../../styles/Entity.css";
-import Modal from "react-modal";
-import CategoryInfo from "./CategoryInfo";
-import cb from "../../images/coffeeBean.jpg";
 import axios from "axios";
 import {Link} from "react-router-dom";
 
@@ -31,7 +28,6 @@ const CategoryTable = () => {
 
     useEffect(() => {
         if (i === 0) {
-            console.log(1)
             if (categories === null) {
                 axios.get('http://localhost:8000/api/category')
                     .then((res) => {
@@ -42,7 +38,7 @@ const CategoryTable = () => {
                 })
             }
         }
-    }, [categories])
+    })
 
     return (
         <>
@@ -63,8 +59,7 @@ const CategoryTable = () => {
                         <td>Skracenica</td>
                         <td>Kreirano</td>
                         <td>Promenjeno</td>
-                        <td></td>
-
+                        <td> </td>
                     </tr>
                     </thead>
                     <tbody id="tableBody">

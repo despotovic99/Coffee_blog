@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import "../../styles/Sidebar.css";
 import sb from "../../images/sidebar.jpg";
-import {FaFacebook, FaGithub, FaInstagram, FaTwitter} from 'react-icons/fa';
+import {FaFacebook, FaInstagram, FaTwitter} from 'react-icons/fa';
 import {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -45,7 +45,7 @@ export default function Sidebar() {
                             <p>Grad: {weatherData.location.name} {weatherData.location.country}</p>
                         </li>
                         <li className="sidebarListItem">
-                            <p>{weatherData.current.condition.text}<img src={weatherData.current.condition.icon}/></p>
+                            <p>{weatherData.current.condition.text}<img src={weatherData.current.condition.icon} alt=''/></p>
                         </li>
                         <li className="sidebarListItem">
                             <p>Temperatura: {weatherData.current.temp_c} C</p>

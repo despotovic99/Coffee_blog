@@ -12,11 +12,7 @@ export const Contact = () => {
   const [message, setMessage] = useState("");
   const handleClick = (e) => {
     e.preventDefault();
-    let vN = name;
-    let vE = email;
-    let vM = message;
-
-    console.log("Ime: " + vN + "\n  Email: " + vE + "\n Poruka: " + vM);
+    console.log('Provera')
   };
   return (
     <div className="ContactPage">
@@ -78,10 +74,9 @@ export const Contact = () => {
                 name="text"
                 value={message}
                 id="message"
-                type="text"
                 placeholder="Vasa poruka"
                 onChange={(e) => setMessage(e.target.value)}
-              ></textarea>
+              />
               <div className="spand" style={{ marginTop: -85 + "px" }}>
                 {" "}
                 Sadrzaj poruke
@@ -95,8 +90,7 @@ export const Contact = () => {
                 buttonSize="small"
                 onClick={handleClick}
                 text="Posalji"
-                route="/contacts"
-              ></Button>
+              />
             </div>
           </div>
         </div>

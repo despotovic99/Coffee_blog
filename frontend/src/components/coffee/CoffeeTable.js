@@ -1,10 +1,5 @@
 import {useEffect, useState} from "react";
 import "../../styles/Entity.css";
-import Footer from "../navigation/Footer";
-import NavBar from "../navigation/NavBar";
-import Modal from "react-modal";
-import CoffeeInfo from "./CoffeeInfo";
-import cb from "../../images/coffeeBean.jpg";
 import axios from "axios";
 import {Link} from "react-router-dom";
 

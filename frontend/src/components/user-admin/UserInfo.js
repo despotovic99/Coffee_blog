@@ -2,8 +2,8 @@ import "../../styles/Entity.css";
 import {Button} from "../pageEssentials/Button";
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {Redirect, useParams} from "react-router-dom";
-import alert from "react-bootstrap/lib/Alert";
+import {useParams} from "react-router-dom";
+
 
 const UserInfo = () => {
 
@@ -22,7 +22,7 @@ const UserInfo = () => {
                 }).catch((e) => {
             })
         }
-    }, [roles])
+    })
 
 
     function sacuvajKorisnika(e) {
@@ -95,7 +95,7 @@ const UserInfo = () => {
                 }).catch((e) => {
             })
         }
-    }, [user])
+    })
 
 
     return (

@@ -1,17 +1,10 @@
 import {useEffect, useState} from "react";
 import "../../styles/Entity.css";
-import Footer from "../navigation/Footer";
-import NavBar from "../navigation/NavBar";
-import Modal from "react-modal";
-import UserInfo from "./UserInfo";
-import CoffeeInfo from "../coffee/CoffeeInfo";
-import user from "../../images/user.jpg";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from "axios";
 
 const UsersTable = () => {
 
-    const navigate = useNavigate()
 
     function deleteUser(id) {
         let url = 'http://localhost:8000/api/user/' + id;
@@ -48,7 +41,7 @@ const UsersTable = () => {
                 console.log(e)
             })
         }
-    }, [users])
+    })
 
     return (
         <>

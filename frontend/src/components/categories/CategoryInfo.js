@@ -1,11 +1,8 @@
 import "../../styles/Entity.css";
 import {useState} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
 
 const CategoryInfo = () => {
-
-    const navigate = useNavigate()
 
     function sacuvajKategoriju(e) {
         e.preventDefault()
@@ -16,15 +13,15 @@ const CategoryInfo = () => {
         })
             .then((res) => {
                 console.log(res.data)
-                alert(res.data.message)
+                window.alert(res.data.message)
 
                 if (res.data.success) {
-                    navigate('/categories')
+                    window.location.href='/categories'
                 }
 
             }).catch((e) => {
             console.log(e)
-            alert(e.message + '\nProveri unos ')
+            window.alert(e.message + '\nProveri unos ')
         })
     }
 

@@ -64,7 +64,7 @@ const CoffeeInfo = () => {
                 }).catch((e) => {
             })
         }
-    }, [coffee])
+    })
 
     return (
         <>
@@ -98,7 +98,7 @@ const CoffeeInfo = () => {
                     buttonSize="small"
                     text="Sacuvaj"
                     onClick={sacuvaj}
-                ></Button>
+                />
 
             </div>
         </>

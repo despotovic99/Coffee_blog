@@ -17,7 +17,7 @@ const AddPost = () => {
 
             })
         }
-    }, [coffees]);
+    });
 
     useEffect(() => {
 
@@ -29,7 +29,7 @@ const AddPost = () => {
 
             })
         }
-    }, [categories])
+    })
 
 
     const handleInput = (e) => {
@@ -52,7 +52,7 @@ const AddPost = () => {
                 }).catch((e) => {
             })
         }
-    }, [postInput])
+    })
 
 
     function sacuvajPost(e) {

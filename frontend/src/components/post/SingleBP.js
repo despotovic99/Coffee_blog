@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "../../styles/SingleBP.css";
-import p4 from "../../images/post4.jpg";
 import CommentBox from "./CommentBox";
-import {Button} from "../pageEssentials/Button";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 
@@ -21,7 +19,7 @@ function SingleBP() {
                 }).catch((e) => {
             })
         }
-    }, [post])
+    })
 
     const handleInput = (e) => {
         e.persist();
@@ -109,7 +107,6 @@ function SingleBP() {
                                                     border: " 3 px solid var(--primary)",
                                                     transition: "all 0.3s ease-out",
                                                 }}
-                                                text="Potvrdi"
                                                 type='button'
                                                 onClick={sacuvajKomentar}
                                             >Potvrdi

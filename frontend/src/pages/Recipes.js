@@ -1,8 +1,5 @@
 import "../styles/Admin.css";
 import {AiOutlineSearch} from "react-icons/ai";
-import {MdOutlineArticle} from "react-icons/md";
-import {FaRegComments} from "react-icons/fa";
-import {FiUsers} from "react-icons/fi";
 import {useState} from "react";
 import axios from "axios";
 
