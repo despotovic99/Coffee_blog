@@ -23,10 +23,12 @@ const Admin = () => {
         if (statistics == null) {
             axios.get('http://localhost:8000/api/get-admin-statistics', {
                 headers: {
-                    'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token')
+                    'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token'),
+                    'Content-Type': 'application/json'
                 }
             })
                 .then((res) => {
+                    console.log(res)
                     console.log(res.data)
                     if (res.data.success) {
                         setStatistics(res.data.statistics)

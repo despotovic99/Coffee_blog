@@ -21,6 +21,7 @@ import NavBar from "./components/navigation/NavBar";
 import Footer from "./components/navigation/Footer";
 import CoffeeInfo from "./components/coffee/CoffeeInfo";
 import UserInfo from "./components/user-admin/UserInfo";
+import Recipes from "./pages/Recipes";
 
 function App() {
     console.log('Provera app componente')
@@ -56,7 +57,7 @@ function App() {
                 <Route path="/categories" element={<CategoryTable/>}/>
                 <Route path="/newCategory" element={<CategoryInfo/>}/>
                 {/*todo servis*/}
-                <Route path="/randomCoffee" element={<></>}/>
+                <Route path="/recipes" element={<Recipes/>}/>
             </Routes>
             <Footer/>
         </Router>

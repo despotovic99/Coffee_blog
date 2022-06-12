@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\CoffeePost;
 use App\Models\CoffeePostComment;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CoffeePostStatisticsController extends Controller {
 
-    public function getStatisticsForAdminPage(Request $request) {
+
+    public function getStatisticsForAdminPage() {
 
         $number_of_posts = count(CoffeePost::all());
         $number_of_comments = count(CoffeePostComment::all());
@@ -28,6 +28,7 @@ class CoffeePostStatisticsController extends Controller {
             $brojPostova = count(CoffeePost::whereDate('created_at', $yesterday)->get());
             $postovi_data_statistika[] = ['name' => $yesterday, 'uv' => $brojPostova];
         }
+
 
         return response()->json(['success' => true, 'statistics' => ['posts' => $number_of_posts,
                 'comments' => $number_of_comments,

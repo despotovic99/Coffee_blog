@@ -1,9 +1,5 @@
 import {LineChart, Line, CartesianGrid, XAxis, YAxis} from 'recharts';
 
-const data = [
-    {name: 'Page A', uv: 400}
-];
-
 const Grafik = ({chartData}) => {
     return (
         <LineChart width={600} height={300} data={chartData} margin={{top: 5, right: 20, bottom: 5, left: 0}}>
