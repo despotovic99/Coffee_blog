@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('coffee_post_comments', function (Blueprint $table) {
             $table->id();
-            $table->string('content');
+            $table->string('comment_content');
             $table->foreignId('post_id');
             $table->foreignId('user_id');
             $table->timestamps();

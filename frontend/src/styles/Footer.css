@@ -23,6 +23,11 @@ ul {
   background-color: #17181b;
   padding: 20px 0;
   margin-top: 10px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+
+
 }
 .footer-col {
   width: 25%;

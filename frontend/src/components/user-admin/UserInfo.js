@@ -36,10 +36,10 @@ const UserInfo = () => {
                 .then((res) => {
                     console.log(res)
                     if (res.data.success) {
-                        alert(res.data.message)
+                        window.alert(res.data.message)
                         window.location.href = '/users'
                     } else {
-                        alert(res.data.error)
+                        window.alert(res.data.error)
                     }
                 }).catch((e) => {
                 console.log(e)
@@ -53,10 +53,10 @@ const UserInfo = () => {
                 .then((res) => {
                     console.log(res)
                     if (res.data.success) {
-                        alert(res.data.message)
+                        window.alert(res.data.message)
                         window.location.href = '/users'
                     } else {
-                        alert(res.data.error)
+                        window.alert(res.data.error)
                     }
                 }).catch((e) => {
                 console.log(e)

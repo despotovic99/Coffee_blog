@@ -12,7 +12,6 @@ function SingleBP() {
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState(null);
     useEffect(() => {
-        console.log("Single post"+123)
         if (post === null) {
             axios.get('http://localhost:8000/api/coffee-post/' + id.id)
                 .then((res) => {
@@ -24,10 +23,41 @@ function SingleBP() {
         }
     }, [post])
 
+    const handleInput = (e) => {
+        e.persist();
+        setComment({
+            ...comment,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const [comment, setComment] = useState(null);
+    function sacuvajKomentar(e){
+        e.preventDefault()
+        axios.post('http://localhost:8000/api/coffee-post-comment', {
+            post_id:id.id,
+            comment_content:comment.comment_content
+        }, {
+            headers: {
+                'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token')
+            }
+        })
+            .then((res) => {
+                console.log(res)
+                if (res.data.success) {
+                    alert(res.data.message)
+                    window.location.reload()
+                } else {
+                    alert(res.data.error)
+                }
+            }).catch((e) => {
+            console.log(e)
+        })
+    }
 
     return (
         <>
-            {post === null ? <></> : <div className="container mt-4" style={{marginBottom: -200 + "px"}}>
+            {post === null ? <></> : <div className="container mt-4">
                 <div className="row">
                     <div className="col-lg-11">
                         <article>
@@ -37,7 +67,7 @@ function SingleBP() {
                                     Postavljeno {(new Date(post.created_at)).toLocaleDateString()} Postavio {post.user_id.name} {post.user_id.lastname}
                                 </div>
                                 <p className="badge bg-dark text-decoration-none link-light">
-                                Kategorija: {post.category_id.name}
+                                    Kategorija: {post.category_id.name}
                                 </p>
                             </header>
                             <section className="mb-8">
@@ -49,27 +79,31 @@ function SingleBP() {
                         <section className="mb-5" style={{paddingBottom: 200 + "px"}}>
                             <div className="card bg-light">
                                 <div className="card-body">
-                                    <form className="mb-4">
+                                    {window.sessionStorage.getItem('auth_token') == null ? <></> : <>
+                                        <form className="mb-4">
                     <textarea
                         className="form-control"
                         rows="3"
                         placeholder="Ostavite komentar i pridruzi se diskusiji!"
+                        onChange={handleInput}
+                        name="comment_content"
                     />
-                                        <button
-                                            className=" col-lg-2 offset-lg-10"
-                                            style={{
-                                                marginTop: 1 + "em",
-                                                backgroundColor: " #17181b",
-                                                color: "white",
-                                                border: " 3 px solid var(--primary)",
-                                                transition: "all 0.3s ease-out",
-                                            }}
-                                            text="Potvrdi"
-                                        >
-                                            {" "}
-                                            Potvrdi
-                                        </button>
-                                    </form>
+                                            <button
+                                                className=" col-lg-2 offset-lg-10"
+                                                style={{
+                                                    marginTop: 1 + "em",
+                                                    backgroundColor: " #17181b",
+                                                    color: "white",
+                                                    border: " 3 px solid var(--primary)",
+                                                    transition: "all 0.3s ease-out",
+                                                }}
+                                                text="Potvrdi"
+                                                type='button'
+                                                onClick={sacuvajKomentar}
+                                            >Potvrdi
+                                            </button>
+                                        </form>
+                                    </>}
                                     <div>
                                         {comments === null ? <></> : comments.map((comment) => (
                                             <CommentBox key={comment.id} comment={comment}/>

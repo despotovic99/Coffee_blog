@@ -4,6 +4,7 @@ import "../../styles/LogReg.css";
 import l from "../../images/login.jpg";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import alert from "react-bootstrap/lib/Alert";
 
 const Login = () => {
 
@@ -37,6 +38,7 @@ const Login = () => {
                     window.location.href = '/home'
                 }
             }).catch((e) => {
+                window.alert('Problem sa prijavom')
             console.log(e)
         })
     };

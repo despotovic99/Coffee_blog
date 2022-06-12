@@ -39,9 +39,8 @@ const AddPost = () => {
             ...postInput,
             [e.target.name]: e.target.value,
         });
-
-
     };
+
     let id = useParams();
     const [postInput, setPostInput] = useState(null);
     useEffect(() => {

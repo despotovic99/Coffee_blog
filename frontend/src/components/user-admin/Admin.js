@@ -115,16 +115,6 @@ const Admin = () => {
                         <div className="recentPosts">
                             <div className="cardHeader">
                                 <h2>Poslednji postovi</h2>
-                                <div className="btn-view">
-                                    {" "}
-                                    <Button
-                                        className="btnViewAllPosts"
-                                        buttonStyle="color"
-                                        buttonSize="small"
-                                        text="Pogledaj sve"
-                                        route="/posts"
-                                    />
-                                </div>
                             </div>
                             <table>
                                 <thead>
