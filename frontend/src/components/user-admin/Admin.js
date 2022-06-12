@@ -1,16 +1,13 @@
 import "../../styles/Admin.css";
 import {GiCoffeeBeans} from "react-icons/gi";
-import {
-    AiOutlineLogout,
-    AiOutlineSearch,
-} from "react-icons/ai";
+import {AiOutlineSearch} from "react-icons/ai";
 import {FaRegComments} from "react-icons/fa";
 import {FiUsers, FiUser} from "react-icons/fi";
 import {MdOutlineArticle} from "react-icons/md";
-import {Button} from "../pageEssentials/Button";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import Grafik from "./Grafik";
 
 const Admin = () => {
 
@@ -21,6 +18,7 @@ const Admin = () => {
     }
 
     const [statistics, setStatistics] = useState(null);
+    const [chartData, setChartData] = useState({});
     useEffect(() => {
         if (statistics == null) {
             axios.get('http://localhost:8000/api/get-admin-statistics', {
@@ -32,13 +30,15 @@ const Admin = () => {
                     console.log(res.data)
                     if (res.data.success) {
                         setStatistics(res.data.statistics)
-                    }else{
+                        setChartData(res.data.chart_data[0])
+                    } else {
                         window.alert('Cant get statistics!')
                     }
                 }).catch((e) => {
             })
         }
     }, [statistics])
+
 
     return (
         <>
@@ -106,7 +106,7 @@ const Admin = () => {
                     <div className="cardbox">
                         <div className="card">
                             <div>
-                                <div className="numbers">{statistics!=null?statistics.posts:0}</div>
+                                <div className="numbers">{statistics != null ? statistics.posts : 0}</div>
                                 <div className="cardName">Broj postova</div>
                             </div>
                             <div className="iconBx">
@@ -115,7 +115,7 @@ const Admin = () => {
                         </div>
                         <div className="card">
                             <div>
-                                <div className="numbers">{statistics!=null?statistics.comments:0}</div>
+                                <div className="numbers">{statistics != null ? statistics.comments : 0}</div>
                                 <div className="cardName">Broj komentara</div>
                             </div>
                             <div className="iconBx">
@@ -124,7 +124,7 @@ const Admin = () => {
                         </div>
                         <div className="card">
                             <div>
-                                <div className="numbers">{statistics!=null?statistics.users:0}</div>
+                                <div className="numbers">{statistics != null ? statistics.users : 0}</div>
                                 <div className="cardName">Broj korisnika</div>
                             </div>
                             <div className="iconBx">
@@ -135,44 +135,11 @@ const Admin = () => {
 
                     <div className="details">
                         <div className="recentPosts">
-                            <div className="cardHeader">
-                                <h2>Poslednji postovi</h2>
-                            </div>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <td>Naslov</td>
-                                    <td>Autor</td>
-                                    <td>Datum</td>
-                                    <td>Kratak opis</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Naslov1</td>
-                                    <td>Autor1</td>
-                                    <td>Datum1</td>
-                                    <td>k1</td>
-                                </tr>
-                                <tr>
-                                    <td>Naslov2</td>
-                                    <td>Autor2</td>
-                                    <td>Datum2</td>
-                                    <td>k2</td>
-                                </tr>
-                                <tr>
-                                    <td>Naslov3</td>
-                                    <td>Autor3</td>
-                                    <td>Datum3</td>
-                                    <td>k3</td>
-                                </tr>
-                                </tbody>
-                            </table>
+
+                            <Grafik chartData={chartData}/>
+                            <h3> Broj objavljenih postova na dnevnom nivou</h3>
                         </div>
                         <div className="recentCustumers">
-                            <div className="cardHeader">
-                                <h2>Poslednji ulogovani korisnici</h2>
-                            </div>
                             <table>
                                 <tbody>
                                 <tr>
@@ -183,37 +150,9 @@ const Admin = () => {
                                     </td>
                                     <td>
                                         <h4>
-                                            Nemanja Despotovic
+                                            Broj ulogovanih korisnika
                                             <br/>
-                                            <span>podatak1</span>
-                                        </h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="60px">
-                                        <div className="imgBx">
-                                            {" "}
-                                            <FiUser size={30}/>{" "}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <h4>
-                                            Ana Korunovic <br/>
-                                            <span>podatak2</span>
-                                        </h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="60px">
-                                        <div className="imgBx">
-                                            <FiUser size={30}/>{" "}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <h4>
-                                            Andjela Milovanovic
-                                            <br/>
-                                            <span>podatac3</span>
+                                            <span>{statistics != null ? statistics.active_users : 0}</span>
                                         </h4>
                                     </td>
                                 </tr>
