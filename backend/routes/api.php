@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CoffeeController;
 use App\Http\Controllers\CoffeePostCommentController;
 use App\Http\Controllers\CoffeePostController;
+use App\Http\Controllers\CoffeePostStatisticsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRoleController;
 use App\Models\Category;
@@ -42,6 +43,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function (Request $request) {
         return auth()->user();
     });
+
+    Route::get('/get-admin-statistics',[CoffeePostStatisticsController::class,'getStatisticsForAdminPage']);
 
     Route::resource('user', UserController::class)->only(['index', 'show', 'update', 'destroy']);
 

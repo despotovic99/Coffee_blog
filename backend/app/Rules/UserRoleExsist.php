@@ -26,7 +26,7 @@ class UserRoleExsist implements Rule
      */
     public function passes($attribute, $value)
     {
-        $userRole = UserRole::find($value);
+        $userRole = UserRole::find(intval($value));
         return $userRole!=null;
     }
 

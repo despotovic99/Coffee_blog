@@ -56,7 +56,7 @@ function App() {
                 <Route path="/categories" element={<CategoryTable/>}/>
                 <Route path="/newCategory" element={<CategoryInfo/>}/>
                 {/*todo servis*/}
-                <Route path="/funFacts" element={<></>}/>
+                <Route path="/randomCoffee" element={<></>}/>
             </Routes>
             <Footer/>
         </Router>

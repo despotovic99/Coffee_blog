@@ -91,8 +91,8 @@ class UserController extends Controller {
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|max:255|email|unique:users,email,' . $user->id,
-            'password' => 'required|string|min:5',
-            'user_role_id' => ['integer', new UserRoleExsist()],
+            'password' => 'string|min:5',
+            'user_role_id' => [new UserRoleExsist()],
         ]);
 
         if ($validator->fails()) {
@@ -104,7 +104,7 @@ class UserController extends Controller {
         $user->email = $request->email;
         if ($user_role->role_slug === 'admin') {
 
-            $user->user_role_id = $request->user_role_id;
+            $user->user_role_id = intval($request->user_role_id);
         }
         $user->password = Hash::make($request->password);
         $user->save();

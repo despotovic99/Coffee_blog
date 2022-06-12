@@ -32,11 +32,12 @@ function SingleBP() {
     };
 
     const [comment, setComment] = useState(null);
-    function sacuvajKomentar(e){
+
+    function sacuvajKomentar(e) {
         e.preventDefault()
         axios.post('http://localhost:8000/api/coffee-post-comment', {
-            post_id:id.id,
-            comment_content:comment.comment_content
+            post_id: id.id,
+            comment_content: comment.comment_content
         }, {
             headers: {
                 'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token')
@@ -75,6 +76,17 @@ function SingleBP() {
                                     {post.post_content}
                                 </p>
                             </section>
+                            {post.coffee_id == null ? <></> : <section className="mb-8">
+                                <p className="fs-5 mb-4">
+                                    Naziv kafe: {post.coffee_id.coffee_name}
+                                </p>
+                                <p className="fs-5 mb-4">
+                                    Vrsta kafe: {post.coffee_id.coffee_sort}
+                                </p>
+                                <p className="fs-5 mb-4">
+                                    Opis kafe: {post.coffee_id.description}
+                                </p>
+                            </section>}
                         </article>
                         <section className="mb-5" style={{paddingBottom: 200 + "px"}}>
                             <div className="card bg-light">

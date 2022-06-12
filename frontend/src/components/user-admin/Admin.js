@@ -9,6 +9,8 @@ import {FiUsers, FiUser} from "react-icons/fi";
 import {MdOutlineArticle} from "react-icons/md";
 import {Button} from "../pageEssentials/Button";
 import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 const Admin = () => {
 
@@ -17,6 +19,26 @@ const Admin = () => {
 
         window.location.href = '/';
     }
+
+    const [statistics, setStatistics] = useState(null);
+    useEffect(() => {
+        if (statistics == null) {
+            axios.get('http://localhost:8000/api/get-admin-statistics', {
+                headers: {
+                    'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token')
+                }
+            })
+                .then((res) => {
+                    console.log(res.data)
+                    if (res.data.success) {
+                        setStatistics(res.data.statistics)
+                    }else{
+                        window.alert('Cant get statistics!')
+                    }
+                }).catch((e) => {
+            })
+        }
+    }, [statistics])
 
     return (
         <>
@@ -84,8 +106,8 @@ const Admin = () => {
                     <div className="cardbox">
                         <div className="card">
                             <div>
-                                <div className="numbers"> 500</div>
-                                <div className="cardName">Postova</div>
+                                <div className="numbers">{statistics!=null?statistics.posts:0}</div>
+                                <div className="cardName">Broj postova</div>
                             </div>
                             <div className="iconBx">
                                 <MdOutlineArticle size={30}/>
@@ -93,8 +115,8 @@ const Admin = () => {
                         </div>
                         <div className="card">
                             <div>
-                                <div className="numbers"> 80</div>
-                                <div className="cardName">Komentara</div>
+                                <div className="numbers">{statistics!=null?statistics.comments:0}</div>
+                                <div className="cardName">Broj komentara</div>
                             </div>
                             <div className="iconBx">
                                 <FaRegComments size={30}/>
@@ -102,8 +124,8 @@ const Admin = () => {
                         </div>
                         <div className="card">
                             <div>
-                                <div className="numbers"> 284</div>
-                                <div className="cardName">Korisnika</div>
+                                <div className="numbers">{statistics!=null?statistics.users:0}</div>
+                                <div className="cardName">Broj korisnika</div>
                             </div>
                             <div className="iconBx">
                                 <FiUsers size={30}/>
