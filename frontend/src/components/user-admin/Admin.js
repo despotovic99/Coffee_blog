@@ -26,7 +26,6 @@ const Admin = () => {
                     'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token'),
                     'Content_Type': 'application/json',
                 },
-                responseType:'json'
             })
                 .then((res) => {
                     console.log(res)
