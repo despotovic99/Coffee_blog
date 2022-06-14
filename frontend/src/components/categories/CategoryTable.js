@@ -24,21 +24,20 @@ const CategoryTable = () => {
     }
 
     const [categories, setCategories] = useState(null);
-    const [i, setI] = useState(0);
 
     useEffect(() => {
-        if (i === 0) {
-            if (categories === null) {
-                axios.get('http://localhost:8000/api/category')
-                    .then((res) => {
-                        setCategories(res.data.categories)
-                        setI(1);
-                    }).catch((e) => {
 
-                })
-            }
+        if (categories === null) {
+            axios.get('http://localhost:8000/api/category')
+                .then((res) => {
+                    setCategories(res.data.categories)
+
+                }).catch((e) => {
+
+            })
         }
-    })
+
+    }, [categories])
 
     return (
         <>
@@ -59,7 +58,7 @@ const CategoryTable = () => {
                         <td>Skracenica</td>
                         <td>Kreirano</td>
                         <td>Promenjeno</td>
-                        <td> </td>
+                        <td></td>
                     </tr>
                     </thead>
                     <tbody id="tableBody">
@@ -67,8 +66,8 @@ const CategoryTable = () => {
                         <tr key={k.id}>
                             <td>{k.name} </td>
                             <td>{k.slug}</td>
-                            <td>{k.created_at}</td>
-                            <td>{k.updated_at}</td>
+                            <td>{new Date(k.created_at).toLocaleDateString()}</td>
+                            <td>{new Date(k.updated_at).toLocaleDateString()}</td>
                             <td>
                                 <button className="btnDeleteCoffee" onClick={() => deleteCategory(k.id)}>
                                     obrisi

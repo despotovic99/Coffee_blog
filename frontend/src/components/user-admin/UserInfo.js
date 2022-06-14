@@ -45,7 +45,7 @@ const UserInfo = () => {
                 console.log(e)
             })
         } else {
-            axios.post('http://localhost:8000/api/register', user, {
+            axios.post('http://localhost:8000/api/register-bez-tokena', user, {
                 headers: {
                     'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token')
                 }
@@ -138,7 +138,7 @@ const UserInfo = () => {
                     className="btnUpdateCoffeeInfo"
                     buttonStyle="color"
                     buttonSize="small"
-                    text="Dodaj"
+                    text="Sacuvaj"
                     onClick={sacuvajKorisnika}
                 />
             </div>

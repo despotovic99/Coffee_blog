@@ -5,7 +5,7 @@ import axios from "axios";
 
 function CommentBox({comment}) {
 
-    function obrisiKomentar(id){
+    function obrisiKomentar(id) {
         let url = 'http://localhost:8000/api/coffee-post-comment/' + id;
         let token = 'Bearer ' + window.sessionStorage.getItem('auth_token');
         axios.delete(url, {
@@ -32,14 +32,14 @@ function CommentBox({comment}) {
                 </div>
                 <div className="ms-3">
                     <div className="fw-bold" style={{paddingBottom: "1em"}}>
-                        <b>{comment.user_id.name} {comment.user_id.lastname}</b>
+                        <b>{comment.user_id == null ? '' : comment.user_id.name + " " + comment.user_id.lastname}</b>
                     </div>
                     <div className="d-grid flex-column">
                         {comment.comment_content}
-                        {(window.sessionStorage.getItem('user_id') == comment.user_id.id ||
-                            window.sessionStorage.getItem('user_type') == 'admin' )  ?
+                        {((comment.user_id != null && window.sessionStorage.getItem('user_id') == comment.user_id.id) ||
+                            window.sessionStorage.getItem('user_type') == 'admin') ?
                             <button
-                                onClick={()=>obrisiKomentar(comment.id)}
+                                onClick={() => obrisiKomentar(comment.id)}
                                 style={{
                                     marginLeft: "-3.5em",
                                     marginTop: "1em",

@@ -84,6 +84,9 @@ function SingleBP() {
                                 <p className="fs-5 mb-4">
                                     Opis kafe: {post.coffee_id.description}
                                 </p>
+                                <p className="fs-5 mb-4">
+                                    Zemlja porekla: {post.coffee_id.country_origin}
+                                </p>
                             </section>}
                         </article>
                         <section className="mb-5" style={{paddingBottom: 200 + "px"}}>

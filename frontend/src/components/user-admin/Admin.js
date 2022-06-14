@@ -41,6 +41,27 @@ const Admin = () => {
         }
     })
 
+    function downloadReport(){
+        axios.get('http://localhost:8000/api/get-report', {
+            headers: {
+                'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token'),
+                'Content-Type': 'application/json'
+            },
+            responseType:'blob'
+        })
+            .then((res) => {
+                console.log(res)
+                console.log(res.data)
+                const url = window.URL.createObjectURL(new Blob([res.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'Izvestaj.xlsx'); //or any other extension
+                document.body.appendChild(link);
+                link.click();
+
+            }).catch((e) => {
+        })
+    }
 
     return (
         <>
@@ -102,6 +123,9 @@ const Admin = () => {
                                     <AiOutlineSearch size={35}/>
                                 </div>
                             </label>
+                        </div>
+                        <div className='stampajBtn'>
+                            <button onClick={downloadReport}>Download izvestaja</button>
                         </div>
                     </div>
 

@@ -39,6 +39,31 @@ class AuthController extends Controller {
             'token_type' => 'Bearer', 'success' => true, 'user_type' => 'viewer', 'user_id' => $user->id]);
     }
 
+    public function registerBezTokena(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|string|max:255|email|unique:users',
+            'password' => 'required|string|min:5'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'error' => strval($validator->errors())]);
+        }
+
+        $user_role_id = UserRole::where('role_slug', 'viewer')->firstOrFail()->id;
+        $user = User::create([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'user_role_id' => $user_role_id,
+            'password' => Hash::make($request->password)
+        ]);
+
+        return response()->json(['message' => 'New user successfully created.', 'data' => $user,
+            'success' => true, 'user_type' => 'viewer', 'user_id' => $user->id]);
+    }
+
     public function login(Request $request) {
 
         if (!Auth::attempt($request->only('email', 'password'))) {

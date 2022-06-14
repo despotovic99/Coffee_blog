@@ -1,12 +1,13 @@
 .coffeeTable {
-  position: relative;
+
   display: grid;
-  min-height: 500px;
+  height: fit-content;
   background: var(--white);
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
 }
+
 .coffeeTableHeader {
 
   align-items: flex-start;
@@ -30,7 +31,6 @@
 .coffeeTable table {
   width: 80%;
   border-collapse: collapse;
-  margin-top: -150px;
 }
 .coffeeTable table thead td {
   font-weight: 600;
