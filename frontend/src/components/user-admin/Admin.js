@@ -24,8 +24,9 @@ const Admin = () => {
             axios.get('http://localhost:8000/api/get-admin-statistics', {
                 headers: {
                     'Authorization': 'Bearer ' + window.sessionStorage.getItem('auth_token'),
-                    'Content-Type': 'application/json'
-                }
+                    'Content_Type': 'application/json',
+                },
+                responseType:'json'
             })
                 .then((res) => {
                     console.log(res)

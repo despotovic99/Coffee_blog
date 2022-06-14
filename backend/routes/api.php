@@ -36,9 +36,8 @@ Route::resource('category', CategoryController::class)->only(['index', 'show']);
 Route::resource('coffee', CoffeeController::class)->only(['index', 'show']);
 Route::resource('coffee-post', CoffeePostController::class)->only(['index', 'show']);
 Route::resource('coffee-post-comment', CoffeePostCommentController::class)->only(['index', 'show']);
-Route::get('coffee-post-newest',[CoffeePostController::class,'show_newest']);
+Route::get('coffee-post-newest', [CoffeePostController::class, 'show_newest']);
 
-    Route::get('/get-report',[CoffeePostStatisticsController::class,'getAdminReport']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('/profile', function (Request $request) {
@@ -47,8 +46,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('register-bez-tokena', [AuthController::class, 'registerBezTokena']);
 
-    Route::get('/get-admin-statistics',[CoffeePostStatisticsController::class,'getStatisticsForAdminPage']);
-
+    Route::get('/get-admin-statistics', [CoffeePostStatisticsController::class, 'getStatisticsForAdminPage']);
+    Route::get('/get-report', [CoffeePostStatisticsController::class, 'getAdminReport']);
 
 
     Route::resource('user', UserController::class)->only(['index', 'show', 'update', 'destroy']);

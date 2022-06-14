@@ -7,12 +7,13 @@ use App\Models\CoffeePost;
 use App\Models\CoffeePostComment;
 use App\Models\User;
 use App\Services\StatisticsReport;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CoffeePostStatisticsController extends Controller {
 
 
-    public function getStatisticsForAdminPage() {
+    public function getStatisticsForAdminPage(Request $request) {
 
         $number_of_posts = count(CoffeePost::all());
         $number_of_comments = count(CoffeePostComment::all());
@@ -32,13 +33,21 @@ class CoffeePostStatisticsController extends Controller {
         }
 
 
+        $tip = $request->getContentType();
 
+        if ($tip == 'xml') {
+            return response()->xml(['success' => true, 'statistics' => ['posts' => $number_of_posts,
+                'comments' => $number_of_comments,
+                'users' => $number_of_users,
+                'active_users' => $active_users],
+                'chart_data' => [$postovi_data_statistika]]);
+        }
 
         return response()->json(['success' => true, 'statistics' => ['posts' => $number_of_posts,
                 'comments' => $number_of_comments,
                 'users' => $number_of_users,
                 'active_users' => $active_users],
-                'chart_data' => [$postovi_data_statistika],]
+                'chart_data' => [$postovi_data_statistika]]
         );
 
     }
@@ -54,28 +63,29 @@ class CoffeePostStatisticsController extends Controller {
         $prosecanBrojKomentaraPoKorisniku = $number_of_users > 0 ? $number_of_comments / $number_of_users : 0;
 
 
-        $idPost=CoffeePostComment::select('post_id')
+        $idPost = CoffeePostComment::select('post_id')
             ->groupBy('post_id')
             ->orderByRaw('COUNT(*) DESC')
             ->limit(1)
             ->get();
 
-        $post=null;
-        if(!empty($idPost)){
-            $post=CoffeePost::find($idPost);
+        $post = null;
+        if (!empty($idPost)) {
+            $post = CoffeePost::find($idPost);
         }
 
         $fileGenerator = new StatisticsReport();
         $file = $fileGenerator->generateAdminReportExcel([
-            'brojPostova'=>$number_of_posts,
-            'brojKomentara'=>$number_of_comments,
-            'brojKafa'=>$number_of_coffees,
-            'brojKorisnika'=>$number_of_users,
-            'datum'=>$datum,
-            'prosecanBrojObjavaPoKorisniku'=>$prosecanBrojObjavaPoKorisniku,
-            'prosecanBrojKomentaraPoKorisniku'=>$prosecanBrojKomentaraPoKorisniku,
-            'post'=>$post
+            'brojPostova' => $number_of_posts,
+            'brojKomentara' => $number_of_comments,
+            'brojKafa' => $number_of_coffees,
+            'brojKorisnika' => $number_of_users,
+            'datum' => $datum,
+            'prosecanBrojObjavaPoKorisniku' => $prosecanBrojObjavaPoKorisniku,
+            'prosecanBrojKomentaraPoKorisniku' => $prosecanBrojKomentaraPoKorisniku,
+            'post' => $post
         ]);
+
 
         return response()->file($file);
     }
