@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/LogReg.css";
 import r from "../../images/register.jpg";
 import axios from "axios";
+import Footer from "../navigation/Footer";
 
 const Register = () => {
   const history = useNavigate();
@@ -142,6 +143,8 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <Footer/>
+
     </section>
   );
 };

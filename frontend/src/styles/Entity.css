@@ -6,16 +6,27 @@
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
+  margin-bottom: 7em;
 }
 
+#addPostLabel{
+  margin-right: 1em;
+  margin-bottom: 3px;
+}
 .coffeeTableHeader {
 
   align-items: flex-start;
 }
+.in{
+  margin-left: 0.5em;
+  margin-top: 0.5em;
+}
+
 .coffeeTableHeader h2 {
   font-weight: 500;
   color: var(--black1);
-  margin-left: -100px;
+  margin-left: 10px;
+  margin-bottom: 20px;
 }
 #tableCol {
   background-color: #9c9c9c;
@@ -55,6 +66,9 @@
 .coffeeTable table tr td:nth-child(3) {
   text-align: center;
 }
+.table{
+  margin-top: 1em;
+}
 
 .btnDeleteCoffee {
   background-color: #aa1a1a !important;
@@ -63,6 +77,7 @@
   border: 1px solid var(--primary);
   transition: all 0.3s ease-out;
   border-radius: 2px;
+  text-decoration: none;
 }
 .btnDeleteCoffee:hover {
   background: #ec4e4e !important;
@@ -78,6 +93,7 @@
   border: 1px solid var(--primary);
   transition: all 0.3s ease-out;
   border-radius: 2px;
+  text-decoration: none;
 }
 .btnUpdateCoffee:hover {
   background: #525255 !important;
@@ -96,6 +112,24 @@
 }
 .modalTitle {
   padding-left: 5.5em;
+}
+.coffee{
+  margin-top: 2em;
+  margin-left: 3em;
+  margin-bottom: 3em;
+}
+
+#changeUserInfo{
+  margin-top: 2em;
+  width: 60%;
+}
+.publish-btn{
+  background-color: #17181b !important;
+width: 25%;
+margin-top: 1em;
+  color: white !important;
+  border: 2px solid var(--primary);
+
 }
 
 .coffee input {
@@ -169,10 +203,11 @@
   padding: 8px 20px;
   border: 1px solid var(--primary);
   transition: all 0.3s ease-out;
-  border-radius: 2px;
+  border-radius: 5px;
   margin-top: 0.5em;
   margin-bottom: 3em;
   margin-left: 0.5em;
+  text-decoration: none;
 }
 .btnAddCoffee:hover {
   background: #525255 !important;
@@ -182,4 +217,5 @@
 }
 .table {
   margin-left: 0.5em;
+  
 }

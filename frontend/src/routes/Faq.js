@@ -7,6 +7,7 @@ const Faq = () => {
     return (
         <div>
             <FAQ />
+            <Footer/>
 
             
             

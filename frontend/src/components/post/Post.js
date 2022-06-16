@@ -9,6 +9,7 @@ function Post({post}) {
             <div className="post">
                 <div className="postInfo">
                     <div className="postTitle1">
+                    <img class="img-fluid rounded" src="https://media.istockphoto.com/photos/coffee-beans-picture-id1294621870?k=20&m=1294621870&s=612x612&w=0&h=CX7W7LTMZRodtRov6laIdmFSvQT7rjxpz75Y6ncGBdg=" alt="sajadslaks" />
 
                         <Link to={'/singleBP/' + post.id}>{post.title}</Link>
                     </div>

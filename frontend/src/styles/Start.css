@@ -33,7 +33,9 @@
 }
 
 .start-btn {
-  margin-top: 280px;
+  margin-top: 200px;
+  width: 30%;
+  margin-left: 3em;
 }
 
 .start-btn .btn {

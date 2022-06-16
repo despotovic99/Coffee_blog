@@ -42,7 +42,7 @@ const CoffeeTable = () => {
                     </Link>
                 </div>
 
-                <table className="table">
+                <table  className="table">
                     <thead>
                     <tr id="tableCol">
                         <td>Naziv</td>

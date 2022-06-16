@@ -2,7 +2,6 @@ import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 import Faq from "./routes/Faq";
-import Contact from "./routes/Contact";
 import Start from "./pages/Start";
 import Home from "./routes/Home";
 import Blogs from "./routes/Blogs";
@@ -28,12 +27,12 @@ function App() {
     return (
 
         <Router className='App'>
-            <NavBar/>
+        <NavBar/>
+            
             <Routes>
                 <Route path="/" element={<Start/>}/>
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/faq" element={<Faq/>}/>
-                <Route path="/contact" element={<Contact/>}/>
                 <Route path="/blogs" element={<Blogs/>}/>
                 <Route path="/singleBP/:id" element={<SingleBP/>}/>
 
@@ -59,7 +58,6 @@ function App() {
                 {/*todo servis*/}
                 <Route path="/recipes" element={<Recipes/>}/>
             </Routes>
-            <Footer/>
         </Router>
     );
 }

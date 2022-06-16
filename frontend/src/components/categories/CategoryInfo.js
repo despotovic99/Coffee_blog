@@ -55,8 +55,8 @@ const CategoryInfo = () => {
                             <label>Skracenica</label>
                             <input type="text" name="slug" placeholder="" onChange={handleInput}/>
                         </div>
-                        <div className="column">
-                            <button type='submit'>Dodaj kategoriju</button>
+                        <div className="column" >
+                            <button className="publish-btn" type='submit'>Dodaj kategoriju</button>
                         </div>
                     </div>
                 </form>

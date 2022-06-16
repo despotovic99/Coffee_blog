@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Start.css";
 import {Link} from "react-router-dom";
+import { Footer } from "react-bootstrap/lib/Modal";
 
 function Start() {
     return (
@@ -12,6 +13,7 @@ function Start() {
                 <Link className='btn basic large' to='/home'>Pokreni užitak!</Link>
             </div>
         </div>
+       
     );
 }
 

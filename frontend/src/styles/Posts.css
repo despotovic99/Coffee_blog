@@ -63,8 +63,7 @@
   display: flex;
   flex-wrap: wrap;
   margin: 20px;
-  margin-top: 250px;
-  margin-bottom: 800px;
+  /* margin-top: -20em; */
 }
 .allcards {
   flex: 9;
@@ -103,6 +102,6 @@ video {
 .home {
   display: flex;
   flex-direction: row;
-
-  margin-top: 470px;
+margin-bottom: 9em;
+  /* margin-top: 470px; */
 }

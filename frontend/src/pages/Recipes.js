@@ -39,26 +39,26 @@ const Recipes = () => {
                         <label>
                             <input type="text" name='pretraga' onChange={handleInput} placeholder="Pretraži"/>
                             <div className="srch">
-                                <AiOutlineSearch size={35}/>
+                            <button className="btnSearch" onClick={traziRecept}><AiOutlineSearch size={35}/></button>
+
                             </div>
-                            <button onClick={traziRecept}>Pretrazi recept</button>
                         </label>
                     </div>
                 </div>
-                <div className="cardbox">
+                <div className="Rcardbox">
                     {recipe==null?<></>:recipe.map((r)=>(
-                        <div className="card" key={r.title}>
+                        <div className="Rcard" key={r.title}>
                             <div>
-                                <div className="cardName"><h2>{r.title}</h2></div>
+                                <div className="RcardName"><h2>{r.title}</h2></div>
                             </div>
                             <div>
-                                <div className="cardName">{r.instructions}</div>
+                                <div className="RcardName">{r.instructions}</div>
                             </div>
                             <div>
-                                <div className="cardName">{r.ingredients}</div>
+                                <div className="RcardName">{r.ingredients}</div>
                             </div>
                             <div>
-                                <div className="cardName">{r.servings}</div>
+                                <div className="RcardName">{r.servings}</div>
                             </div>
                         </div>
                     ))}

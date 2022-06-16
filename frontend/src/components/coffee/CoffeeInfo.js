@@ -80,18 +80,19 @@ const CoffeeInfo = () => {
                         <input type="text" name="coffee_sort" onChange={handleInput}
                                value={coffee == null ? '' : coffee.coffee_sort}/>
 
-                        <label>Kratak opis</label>
+                         </div>
+                    <div className="column">
+                    <label>Kratak opis</label>
+                        <br></br>
                         <textarea name="description" onChange={handleInput}
                                value={coffee == null ? '' : coffee.description}/>
-                    </div>
-                    <div className="column">
+                   <br></br>
                         <label>Poreklo</label>
                         <input type="text" name="country_origin" onChange={handleInput}
                                value={coffee == null ? '' : coffee.country_origin}/>
                     </div>
                 </div>
-            </div>
-            <div className="btnInfo">
+                <div className="btnInfo" id="changeUserInfo">
                 <Button
                     className="btnUpdateCoffeeInfo"
                     buttonStyle="color"
@@ -101,6 +102,8 @@ const CoffeeInfo = () => {
                 />
 
             </div>
+            </div>
+            
         </>
     );
 };

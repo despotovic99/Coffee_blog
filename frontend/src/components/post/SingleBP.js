@@ -61,8 +61,9 @@ function SingleBP() {
                     <div className="col-lg-11">
                         <article>
                             <header className="mb-4">
-                                <h1 className="fw-bolder mb-1">{post.title}</h1>
+                                <h1 className="fw-bolder ">{post.title}</h1>
                                 <div className="text-muted fst-italic mb-2">
+
                                     Postavljeno {(new Date(post.created_at)).toLocaleDateString()} Postavio {post.user_id.name} {post.user_id.lastname}
                                 </div>
                                 <p className="badge bg-dark text-decoration-none link-light">

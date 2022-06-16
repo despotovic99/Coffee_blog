@@ -5,6 +5,7 @@ import l from "../../images/login.jpg";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import alert from "react-bootstrap/lib/Alert";
+import Footer from "../navigation/Footer";
 
 const Login = () => {
 
@@ -131,6 +132,8 @@ const Login = () => {
                     </div>
                 </div>
             </section>
+            <Footer/>
+
         </>
     );
 };

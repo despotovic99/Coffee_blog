@@ -8,6 +8,8 @@ const SinglePost = () => {
     <>
 
       <SingleBP />
+      <Footer/>
+
     </>
   );
 };

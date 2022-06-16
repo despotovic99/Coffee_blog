@@ -100,8 +100,9 @@ const UserInfo = () => {
 
     return (
         <>
-            <h3>Izmena profila</h3>
+           
             <div className="coffee">
+            <h3>Izmena profila</h3>
                 <div className="row">
                     <div className="column">
                         <label>Ime</label>
@@ -132,8 +133,7 @@ const UserInfo = () => {
                             </>}
                     </div>
                 </div>
-            </div>
-            <div className="btnInfo">
+                <div className="btnInfo" id="changeUserInfo">
                 <Button
                     className="btnUpdateCoffeeInfo"
                     buttonStyle="color"
@@ -142,6 +142,8 @@ const UserInfo = () => {
                     onClick={sacuvajKorisnika}
                 />
             </div>
+            </div>
+           
         </>
     );
 };

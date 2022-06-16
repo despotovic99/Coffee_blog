@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Grafik from "./Grafik";
+import Footer from "../navigation/Footer";
 
 const Admin = () => {
 
@@ -116,16 +117,9 @@ const Admin = () => {
 
                 <div className="main">
                     <div className="topbar">
-                        <div className="search">
-                            <label>
-                                <input type="text" placeholder="Pretraži"/>
-                                <div className="srch">
-                                    <AiOutlineSearch size={35}/>
-                                </div>
-                            </label>
-                        </div>
+                        
                         <div className='stampajBtn'>
-                            <button onClick={downloadReport}>Download izvestaja</button>
+                            <button id="downloadStats" onClick={downloadReport}>Download izvestaja</button>
                         </div>
                     </div>
 
@@ -188,6 +182,8 @@ const Admin = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
+
         </>
     );
 };

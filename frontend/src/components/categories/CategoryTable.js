@@ -47,8 +47,6 @@ const CategoryTable = () => {
 
                     <Link className="btnAddCoffee" to='/newCategory'>Dodaj novu kategoriju</Link>
                     <br/>
-                    <br/>
-                    <br/>
                 </div>
 
                 <table className="table">
@@ -58,7 +56,7 @@ const CategoryTable = () => {
                         <td>Skracenica</td>
                         <td>Kreirano</td>
                         <td>Promenjeno</td>
-                        <td></td>
+                        <td>Obrisi</td>
                     </tr>
                     </thead>
                     <tbody id="tableBody">

@@ -60,11 +60,7 @@ function NavBar() {
                             FAQ
                         </Link>
                     </li>
-                    <li className="item">
-                        <Link to="/contact" className="link" onClick={closeMobileMenu}>
-                            Kontakt
-                        </Link>
-                    </li>
+                    
                     <li className='item'>
                         {window.sessionStorage.getItem('auth_token') == null ?
                             <></> :
@@ -77,7 +73,7 @@ function NavBar() {
                             <Link to="/login" className='user' style={{color: "white"}}> <AiOutlineUser style={{
                                 marginTop: -10 + "px", marginLeft: '2rem', width: 40 + "px", height: 100 + "px"
                             }}/> </Link> :
-                            <button className='link' style={{height: '40px', marginTop: '20px', color: 'black'}}
+                            <button className='link' style={{height: '40px',borderRadius: "7px", marginTop: '20px', color: 'black'}}
                                     onClick={logoutUser}>Odjava</button>}
 
                     </li>

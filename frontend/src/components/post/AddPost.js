@@ -118,7 +118,7 @@ const AddPost = () => {
                         value={postInput == null ? '' : postInput.post_content}
                     />
                     <div>
-                        <label>Izaberi kategoriju</label>
+                        <label id="addPostLabel">Izaberi kategoriju </label>
                         <select name='category_id' onChange={handleInput}
                                 value={postInput == null || postInput.category_id == null ? '' : postInput.category_id.id}>
                             <option value=''>Odaberi</option>
@@ -128,7 +128,7 @@ const AddPost = () => {
                         </select>
                     </div>
                     <div>
-                        <label>Izaberi kafu</label>
+                        <label id="addPostLabel">Izaberi kafu   </label>
                         <select name='coffee_id' onChange={handleInput}
                                 value={postInput == null || postInput.coffee_id == null ? '' : postInput.coffee_id.id}>
                             <option value>Nema</option>
