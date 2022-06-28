@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller {
     /**
-     * Display a listing of the resource.
+     * @group Kategorije
+     * Display a listing of all categories.
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +32,8 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @group Kategorije
+     * Store a newly created category in storage.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -63,7 +65,8 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Display the specified resource.
+     * @group Kategorije
+     * Display the specified category.
      *
      * @param \App\Models\Category $category
      * @return \Illuminate\Http\Response
@@ -73,6 +76,7 @@ class CategoryController extends Controller {
     }
 
     /**
+     *
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\Category $category
@@ -94,7 +98,8 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @group Kategorije
+     * Remove the specified category from storage.
      *
      * @param \App\Models\Category $category
      * @return \Illuminate\Http\Response

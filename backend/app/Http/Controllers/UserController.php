@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller {
     /**
-     * Display a listing of the resource.
+     * @group User
+     * Display a listing of the all Users. Need to be logged in.
      *
      * @return \Illuminate\Http\Response
      */
@@ -47,7 +48,8 @@ class UserController extends Controller {
     }
 
     /**
-     * Display the specified resource.
+     * @group User
+     * Gettomg data of specified User.
      *
      * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
@@ -73,7 +75,8 @@ class UserController extends Controller {
     }
 
     /**
-     * Update the specified resource in storage.
+     * @group User
+     * Update the specified User.
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\User $user
@@ -114,7 +117,8 @@ class UserController extends Controller {
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @group User
+     * Remove the specified User from database.
      *
      * @param \App\Models\User $user
      * @return \Illuminate\Http\Response

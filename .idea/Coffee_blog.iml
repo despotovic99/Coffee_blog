@@ -130,6 +130,14 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/phpoffice/phpspreadsheet" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/spatie/array-to-xml" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/mtownsend/response-xml" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/knuckleswtf/scribe" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/shalvah/clara" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/shalvah/upgrader" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/erusev/parsedown" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/var-exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/mpociot/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/spatie/data-transfer-object" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

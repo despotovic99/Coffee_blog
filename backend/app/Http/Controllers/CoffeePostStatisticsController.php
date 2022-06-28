@@ -12,7 +12,15 @@ use Illuminate\Support\Facades\DB;
 
 class CoffeePostStatisticsController extends Controller {
 
-
+    /**
+     * @group Statistics
+     *
+     * Getting detailed statistics for admin page.
+     * This route recognize content type header and returns json or xml.
+     *
+     * @param \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
     public function getStatisticsForAdminPage(Request $request) {
 
         $number_of_posts = count(CoffeePost::all());
@@ -51,7 +59,13 @@ class CoffeePostStatisticsController extends Controller {
         );
 
     }
-
+    /**
+     * @group Statistics
+     *
+     * Getting overall report for our blog in Excel file.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getAdminReport() {
 
         $number_of_posts = count(CoffeePost::all());

@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Validator;
 
 class CoffeePostController extends Controller {
     /**
-     * Display a listing of the resource.
+     * @group Posts
+     * Display a listing of all CoffePosts.
      *
      * @return \Illuminate\Http\Response
      */
@@ -35,7 +36,8 @@ class CoffeePostController extends Controller {
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @group Posts
+     * Store a newly created CoffePost in storage.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -66,7 +68,8 @@ class CoffeePostController extends Controller {
     }
 
     /**
-     * Display the specified resource.
+     * @group Posts
+     * Display the specified CoffePost.
      *
      * @param \App\Models\CoffeePost $coffeePost
      * @return \Illuminate\Http\Response
@@ -87,7 +90,8 @@ class CoffeePostController extends Controller {
     }
 
     /**
-     * Update the specified resource in storage.
+     * @group Posts
+     * Update the specified post in storage.
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\CoffeePost $coffeePost
@@ -122,7 +126,8 @@ class CoffeePostController extends Controller {
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @group Posts
+     * Remove the specified post from storage.
      *
      * @param \App\Models\CoffeePost $coffeePost
      * @return \Illuminate\Http\Response

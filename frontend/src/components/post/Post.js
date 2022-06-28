@@ -15,8 +15,6 @@ function Post({post}) {
                     </div>
 
                     <p className="postDate" style={{marginLeft: -200 + "px"}}>
-                        <AiOutlineEye style={{marginLeft: "2rem"}}/>
-                        1000
                         <AiOutlineUser style={{marginLeft: "2rem"}}/>
                         {post.user_id.name}
                         <AiOutlineCalendar style={{marginLeft: "2em"}}/>

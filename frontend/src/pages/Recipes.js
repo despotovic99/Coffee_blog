@@ -34,19 +34,21 @@ const Recipes = () => {
     return (
         <div className='container-Admin'>
             <div className='main'>
+                <h2>Pronađi recept za sebe</h2>
                 <div className="topbar">
                     <div className="search">
                         <label>
                             <input type="text" name='pretraga' onChange={handleInput} placeholder="Pretraži"/>
                             <div className="srch">
-                            <button className="btnSearch" onClick={traziRecept}><AiOutlineSearch size={35}/></button>
+                                <button className="btnSearch" onClick={traziRecept}><AiOutlineSearch size={35}/>
+                                </button>
 
                             </div>
                         </label>
                     </div>
                 </div>
                 <div className="Rcardbox">
-                    {recipe==null?<></>:recipe.map((r)=>(
+                    {recipe == null ? <></> : recipe.map((r) => (
                         <div className="Rcard" key={r.title}>
                             <div>
                                 <div className="RcardName"><h2>{r.title}</h2></div>

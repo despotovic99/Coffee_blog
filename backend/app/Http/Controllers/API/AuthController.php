@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller {
+
+    /**
+     * @group Authentication
+     *
+     * Creating new account
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -39,6 +48,15 @@ class AuthController extends Controller {
             'token_type' => 'Bearer', 'success' => true, 'user_type' => 'viewer', 'user_id' => $user->id]);
     }
 
+    /**
+     * @group Authentication
+     *
+     * Creating new account without getting access token
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+
     public function registerBezTokena(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -64,6 +82,14 @@ class AuthController extends Controller {
             'success' => true, 'user_type' => 'viewer', 'user_id' => $user->id]);
     }
 
+    /**
+     * @group Authentication
+     *
+     * Login on application
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function login(Request $request) {
 
         if (!Auth::attempt($request->only('email', 'password'))) {
@@ -84,7 +110,14 @@ class AuthController extends Controller {
             'user_type' => $userRole, 'user_id' => $user->id]);
 
     }
-
+    /**
+     * @group Authentication
+     *
+     * Logout
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function logout(Request $request) {
         auth()->user()->tokens()->delete();
         return response()->json(['message' => 'Successfully logged out', 'success' => true]);

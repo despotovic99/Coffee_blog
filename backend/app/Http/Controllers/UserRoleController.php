@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Validator;
 
 class UserRoleController extends Controller {
     /**
-     * Display a listing of the resource.
+     * @group UserRole
+     * Display a listing of all UserRoles
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,6 +30,7 @@ class UserRoleController extends Controller {
     }
 
     /**
+     *
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -38,7 +40,8 @@ class UserRoleController extends Controller {
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @group User
+     * Store a newly created UserRole
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -74,7 +77,8 @@ class UserRoleController extends Controller {
     }
 
     /**
-     * Display the specified resource.
+     * @group User
+     * Display the specified UserRole using provided id.
      *
      * @param \App\Models\UserRole $userRole
      * @return \Illuminate\Http\Response
@@ -112,7 +116,8 @@ class UserRoleController extends Controller {
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @group User
+     * Remove the specified UserRole from storage.
      *
      * @param \App\Models\UserRole $userRole
      * @return \Illuminate\Http\Response

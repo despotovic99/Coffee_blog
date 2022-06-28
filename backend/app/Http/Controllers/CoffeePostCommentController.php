@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Validator;
 
 class CoffeePostCommentController extends Controller {
     /**
-     * Display a listing of the resource.
+     * @group Comments
+     * Display a listing of all comments.
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +32,8 @@ class CoffeePostCommentController extends Controller {
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @group Comments
+     * Store a newly created comment in storage.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -60,6 +62,7 @@ class CoffeePostCommentController extends Controller {
     }
 
     /**
+     * @group Comments
      * Display the specified resource.
      *
      * @param \App\Models\CoffeePostComment $coffeePostComment
@@ -80,6 +83,7 @@ class CoffeePostCommentController extends Controller {
     }
 
     /**
+     *
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
@@ -91,7 +95,8 @@ class CoffeePostCommentController extends Controller {
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @group Comments
+     * Remove the specified comment from storage.
      *
      * @param \App\Models\CoffeePostComment $coffeePostComment
      * @return \Illuminate\Http\Response

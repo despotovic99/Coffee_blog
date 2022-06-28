@@ -124,6 +124,14 @@
       <path value="$PROJECT_DIR$/backend/vendor/phpoffice/phpspreadsheet" />
       <path value="$PROJECT_DIR$/backend/vendor/spatie/array-to-xml" />
       <path value="$PROJECT_DIR$/backend/vendor/mtownsend/response-xml" />
+      <path value="$PROJECT_DIR$/backend/vendor/knuckleswtf/scribe" />
+      <path value="$PROJECT_DIR$/backend/vendor/shalvah/clara" />
+      <path value="$PROJECT_DIR$/backend/vendor/shalvah/upgrader" />
+      <path value="$PROJECT_DIR$/backend/vendor/erusev/parsedown" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/backend/vendor/mpociot/reflection-docblock" />
+      <path value="$PROJECT_DIR$/backend/vendor/spatie/data-transfer-object" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
